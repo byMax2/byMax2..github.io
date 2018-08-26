@@ -1,0 +1,97 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<!--	<link rel="stylesheet" href="style.css">   -->
+		<link rel="stylesheet" href="style.css"> 
+		<script src="main.js"></script>
+		<link rel="shortcut icon" type="image/x-icon" href="https://fotos.verwaltungsportal.de/seitengenerator/gross/logo_platzhalter.png">
+		<title>Role-Play-Game | byMax</title>
+	</head>
+	<body>
+	
+		<div class="shows">
+			<h3>Deine Materialien:</h3><br>
+			<div class="showmainbox">
+				<div class="showbox">
+				<p>Holz</p><hr><span id="holzmenge">10</span>
+				</div>
+				
+				<div class="showbox">
+				<p>Stein</p><hr><span id="steinmenge">0</span>
+				</div>
+				
+				<div class="showbox">
+				<p>Metal</p><hr><span id="metalmenge">0</span>
+				</div>
+				
+				<div class="showbox">
+				<p>Nahrung</p><hr><span id="nahrungmenge">0</span>
+				</div>
+				
+				<div class="showbox">
+				<p>Münzen</p><hr><span id="goldmenge">0</span>
+				</div>
+				
+				<div class="showbox">
+				<p>Smaragd</p><hr><span id="smaragdmenge">0</span>
+				</div>
+				
+				<div class="showbox">
+				<p>Bevölkerung</p><hr><span id="bevoelkerung">0</span>/<span id="freiebevoelkerung">5</span>
+				</div>
+			</div>	
+		</div>
+		
+		<div class="shows">
+			<h3>Gebäude:</h3><br>
+			<div class="showmainbox">
+				<div class="showbox">
+					<p>Holzfällerhütte | <span id="lumberhod">0</span></p><hr><p>-<span id="lumberhodcst">10</span> Holz / k <br> +0.1 Holz / s</p><hr>
+					<button onclick="addOneLumberHod()">bauen</button>
+					</div>
+					
+					<div class="showbox">
+					<p>Steinbruch | <span id="mine">0</span></p><hr><p>-<span id="minecst">20</span> Holz / k <br> +0.1 Stein / s</p><hr>
+					<button onclick="addOneMine()">bauen</button>
+					</div>
+					
+					<div class="showbox">
+					<p>Bauernhaus | <span id="farmerhod">0</span></p><hr><p>-<span id="farmerhodcst">40</span> Holz / k <br> +0.1 Essen / s</p><hr>
+					<button onclick="addOneFarmerHod()">bauen</button>
+					</div>
+					
+					<div class="showbox">
+					<p>Wohnhaus | <span id="residence">0</span></p><hr><p>-<span id="residencecst">10</span> Holz / k <br>-<span id="residencestonecst">10</span> Stein / k <br> +5 Bevölkerung</p><hr>
+					<button onclick="addOneResidence()">bauen</button>
+				</div>
+			</div>
+		</div>
+		
+				<div class="shows">
+			<h3>Deine Mitarbeiter:</h3><br>
+			<div class="showmainbox">
+				<div class="showbox">
+					<p>Holzfäller | <span id="holzfaellermenge">0</span>/2</p><hr><p>-<span id="holzfaellercst">5</span> Essen / k <br> +1 Holzfäller</p><hr>
+					<button onclick="Holzfaellereinstellen()">einstellen</button>
+				</div>
+				
+				<div class="showbox">
+					<p>Minenarbeiter | <span id="mienenarbeitermenge">0</span>/2</p><hr><p>-<span id="holzfaellercst">5</span> Essen / k <br> +1 Minenarbeiter</p><hr>
+					<button onclick="Holzfaellereinstellen()">einstellen</button>
+				</div>
+				
+				<div class="showbox">
+					<p>Bauern | <span id="bauermenge">0</span>/2</p><hr><p>-<span id="holzfaellercst">5</span> Essen / k <br> +1 Bauern</p><hr>
+					<button onclick="Holzfaellereinstellen()">einstellen</button>
+				</div>
+			</div>	
+		</div>
+	
+	<header></header>
+	<main></main>
+	
+	<footer>
+		© Maximilain Lude, 2018
+	</footer>
+	</body>
+</html>
