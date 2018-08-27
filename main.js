@@ -19,6 +19,7 @@ var farmermax = 0;
 var holzfaellermenge = 0;
 var mienenarbeitermenge = 0;
 var farmermenge = 0;
+var buergermenge = 0;
 
 /* Buildings */
 
@@ -58,9 +59,9 @@ function addFood(i) {
 	nahrungmenge += i;
 	document.getElementById("nahrungmenge").innerHTML = nahrungmenge;
 }
-function addOneGold() {
-	goldmenge += 1;
-	document.getElementById(goldmenge).innerHTML = goldmenge;
+function addGold(i) {
+	goldmenge += i;
+	document.getElementById("goldmenge").innerHTML = goldmenge;
 }
 function addOneSmaragd() {
 	smaragdmenge += 1;
@@ -180,10 +181,26 @@ function Farmereinstellen() {
 	}
 }
 
+function Buergerholen() {
+	
+	if (nahrungmenge >= 10) {
+		if (maxbevoelkerung > bevoelkerung) {
+			nahrungmenge -= 10;
+			document.getElementById("nahrungmenge").innerHTML = nahrungmenge;
+			bevoelkerung += 1;
+			document.getElementById("bevoelkerung").innerHTML = bevoelkerung;
+			buergermenge += 1;
+			document.getElementById("buergermenge").innerHTML = buergermenge;
+			
+		}
+	}
+}
+
 window.setInterval(function() {
 	
 	addWood(holzfaellermenge);
 	addStone(mienenarbeitermenge);
 	addFood(farmermenge);
+	addGold(buergermenge);
 	
 }, 5000);
