@@ -5,10 +5,12 @@
 		<link rel="stylesheet" href="style.css"> 
 		<script src="main.js"></script>
 		<link rel="shortcut icon" type="image/x-icon" href="https://fotos.verwaltungsportal.de/seitengenerator/gross/logo_platzhalter.png">
-		<title>Role-Play-Game | byMax</title>
+		<title>Role-Play-Game | v.4</title>
 	</head>
 	<body>
-	
+		<header>
+			<h1><br>RPG | byMax v.4<br></h1>
+		</header>
 		<div class="shows">
 			<h3>Deine Materialien:</h3><br>
 			<div class="showmainbox">
@@ -43,51 +45,61 @@
 		</div>
 		
 		<div class="shows">
-			<h3>Gebäude:</h3><br>
+			<h3>Deine Gebäude:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
 					<p>Holzfällerhütte | <span id="lumberhod">0</span></p><hr><p>-<span id="lumberhodcst">10</span> Holz<br> +1 Holzfällerplatz</p><hr>
-					<button onclick="addOneLumberHod()">bauen</button>
+					<button onclick="addOneLumberHod()">bauen</button><br>
 					</div>
 					
 					<div class="showbox">
 					<p>Bergwerk | <span id="mine">0</span></p><hr><p>-<span id="minecst">20</span> Holz<br> +1 Bergarbeiterplatz</p><hr>
-					<button onclick="addOneMine()">bauen</button>
+					<button onclick="addOneMine()">bauen</button><br>
 					</div>
 					
 					<div class="showbox">
 					<p>Bauernhaus | <span id="farmerhod">0</span></p><hr><p>-<span id="farmerhodcst">40</span> Holz<br> +1 Bauernplatz</p><hr>
-					<button onclick="addOneFarmerHod()">bauen</button>
+					<button onclick="addOneFarmerHod()">bauen</button><br>
 					</div>
 					
 					<div class="showbox">
 					<p>Wohnhaus | <span id="residence">0</span></p><hr><p>-<span id="residencecst">50</span> Holz<br>-<span id="residencestonecst">10</span> Stein<br> +5 Bevölkerung</p><hr>
-					<button onclick="addOneResidence()">bauen</button>
+					<button onclick="addOneResidence()">bauen</button><br>
 				</div>
 			</div>
 		</div>
 		
-				<div class="shows">
-			<h3>Deine Volk:</h3><br>
+		<div class="shows">
+			<h3>Dein Volk:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
 					<p>Holzfäller | <span id="holzfaellermenge">0</span>/<span id="holzfaellermax">0</span></p><hr><p>-<span id="holzfaellercst">5</span> Brot<br> -1 Holzfällerplatz<br> +1 Holzfäller<br> +1 Holz alle 5 Sekunden</p><hr>
-					<button onclick="Holzfaellereinstellen()">einstellen</button>
+					<button onclick="Holzfaellereinstellen()">einstellen</button><br>
 				</div>
 				
 				<div class="showbox">
 					<p>Bergarbeiter | <span id="mienenarbeitermenge">0</span>/<span id="mienenarbeitermax">0</span></p><hr><p>-<span id="holzfaellercst">5</span> Bort<br> -1 Bergarbeiterplatz<br> +1 Bergarbeiter<br> +1 Stein alle 5 Sekunden</p><hr>
-					<button onclick="Mienenarbeitereinstellen()">einstellen</button>
+					<button onclick="Mienenarbeitereinstellen()">einstellen</button><br>
 				</div>
 				
 				<div class="showbox">
 					<p>Bauern | <span id="farmermenge">0</span>/<span id="farmermax">0</span></p><hr><p>-<span id="farmercst">5</span> Brot<br> -1 Bauernplatz<br> +1 Bauern<br> +1 Brot alle 5 Sekunden</p><hr>
-					<button onclick="Farmereinstellen()">einstellen</button>
+					<button onclick="Farmereinstellen()">einstellen</button><br>
 				</div>
 				
 				<div class="showbox">
 					<p>Bürger | <span id="buergermenge">0</span></p><hr><p>-<span id="buergercst">10</span> Brot<br> -1 Bevölkerung<br> +1 Bürger<br> +1 Münzen alle 5 Sekunden</p><hr>
-					<button onclick="Buergerholen()">holen</button>
+					<button onclick="Buergerholen()">holen</button><br>
+				</div>
+			</div>	
+		</div>
+		
+		<div class="shows">
+			<h3>Deine Erweiterungen:</h3><br>
+			<div class="showmainbox">
+				<div class="showbox">
+					<p>Holzerweiterung</p><hr><p>-50 Holz<br> -100 Stein<br> +Doppelte Effizienz</p><hr>
+					<button id="woodupgrades" onclick="buyWoodUpgrade()">kaufen</button><br>
 				</div>
 			</div>	
 		</div>

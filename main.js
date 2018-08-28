@@ -21,6 +21,7 @@ var mienenarbeitermenge = 0;
 var farmermenge = 0;
 var buergermenge = 0;
 
+var geschwindigkeit = 100;
 /* Buildings */
 
 var lumberhod = 0;
@@ -41,31 +42,33 @@ var minelvl = 1;
 var farmerhodlvl = 1;
 var residencelvl = 1;
 
+var holzupgrade = 1;
+
 /* Function Add Resources */
 
 function addWood(i) {
-	holzmenge += i;
-	document.getElementById("holzmenge").innerHTML = holzmenge;
+	holzmenge += i / geschwindigkeit;
+	document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
 }
 function addStone(i) {
-	steinmenge += i;
-	document.getElementById("steinmenge").innerHTML = steinmenge;
+	steinmenge += i / geschwindigkeit;
+	document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
 }
 function addOneMetal() {
-	metalmenge += 1;
-	document.getElementById("metalmenge").innerHTML = metalmenge;
+	metalmenge += 1 / geschwindigkeit;
+	document.getElementById("metalmenge").innerHTML = Math.floor(metalmenge);
 }
 function addFood(i) {
-	nahrungmenge += i;
-	document.getElementById("nahrungmenge").innerHTML = nahrungmenge;
+	nahrungmenge += i / geschwindigkeit;
+	document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
 }
 function addGold(i) {
-	goldmenge += i;
-	document.getElementById("goldmenge").innerHTML = goldmenge;
+	goldmenge += i / geschwindigkeit;
+	document.getElementById("goldmenge").innerHTML = Math.floor(goldmenge);
 }
 function addOneSmaragd() {
-	smaragdmenge += 1;
-	document.getElementById("smaragdmenge").innerHTML = smaragdmenge;
+	smaragdmenge += 1 / geschwindigkeit;
+	document.getElementById("smaragdmenge").innerHTML = Math.floor(smaragdmenge);
 }
 
 /* Function Build Buildings */
@@ -74,13 +77,13 @@ function addOneLumberHod() {
 	
 	if (holzmenge >= lumberhodcst) {
 		holzmenge -= lumberhodcst;
-		document.getElementById("holzmenge").innerHTML = holzmenge;
+		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
 		lumberhod += 1;
-		document.getElementById("lumberhod").innerHTML = lumberhod;
+		document.getElementById("lumberhod").innerHTML = Math.floor(lumberhod);
 		lumberhodcst = Math.floor(10*lumberhod/4+10);
-		document.getElementById("lumberhodcst").innerHTML = lumberhodcst;
+		document.getElementById("lumberhodcst").innerHTML = Math.floor(lumberhodcst);
 		holzfaellermax += 2;
-		document.getElementById("holzfaellermax").innerHTML = holzfaellermax;
+		document.getElementById("holzfaellermax").innerHTML = Math.floor(holzfaellermax);
 	}
 }
 
@@ -88,13 +91,13 @@ function addOneMine() {
 	
 	if (holzmenge >= minecst) {
 		holzmenge -= minecst;
-		document.getElementById("holzmenge").innerHTML = holzmenge;
+		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
 		mine += 1;
-		document.getElementById("mine").innerHTML = mine;
+		document.getElementById("mine").innerHTML = Math.floor(mine);
 		minecst = Math.floor(10*mine/4+20);
-		document.getElementById("minecst").innerHTML = minecst;
+		document.getElementById("minecst").innerHTML = Math.floor(minecst);
 		mienenarbeitermax += 2;
-		document.getElementById("mienenarbeitermax").innerHTML = mienenarbeitermax;
+		document.getElementById("mienenarbeitermax").innerHTML = Math.floor(mienenarbeitermax);
 	}
 }
 
@@ -102,13 +105,13 @@ function addOneFarmerHod() {
 	
 	if (holzmenge >= farmerhodcst) {
 		holzmenge -= farmerhodcst;
-		document.getElementById("holzmenge").innerHTML = holzmenge;
+		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
 		farmerhod += 1;
-		document.getElementById("farmerhod").innerHTML = farmerhod;
+		document.getElementById("farmerhod").innerHTML = Math.floor(farmerhod);
 		farmerhodcst = Math.floor(10*farmerhod/4+40);
-		document.getElementById("farmerhodcst").innerHTML = farmerhodcst;
+		document.getElementById("farmerhodcst").innerHTML = Math.floor(farmerhodcst);
 		farmermax += 2;
-		document.getElementById("farmermax").innerHTML = farmermax;
+		document.getElementById("farmermax").innerHTML = Math.floor(farmermax);
 	}
 }
 
@@ -116,18 +119,18 @@ function addOneResidence() {
 	
 	if (holzmenge >= residencecst && steinmenge >= residencestonecst) {
 		holzmenge -= residencecst;
-		document.getElementById("holzmenge").innerHTML = holzmenge;
+		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
 		steinmenge -= residencestonecst;
-		document.getElementById("steinmenge").innerHTML = steinmenge;
+		document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
 		residence += 1;
-		document.getElementById("residence").innerHTML = residence;
+		document.getElementById("residence").innerHTML = Math.floor(residence);
 		maxbevoelkerung += 5;
-		document.getElementById("maxbevoelkerung").innerHTML = maxbevoelkerung;
+		document.getElementById("maxbevoelkerung").innerHTML = Math.floor(maxbevoelkerung);
 		
 		residencecst = Math.floor(10*residence/4+50);
-		document.getElementById("residencecst").innerHTML = residencecst;
+		document.getElementById("residencecst").innerHTML = Math.floor(residencecst);
 		residencestonecst = Math.floor(10*residence/4+10);
-		document.getElementById("residencestonecst").innerHTML = residencestonecst;
+		document.getElementById("residencestonecst").innerHTML = Math.floor(residencestonecst);
 	}
 }
 
@@ -139,11 +142,11 @@ function Holzfaellereinstellen() {
 		if (maxbevoelkerung > bevoelkerung) {
 			if (holzfaellermax > holzfaellermenge) {
 				nahrungmenge -= 5;
-				document.getElementById("nahrungmenge").innerHTML = nahrungmenge;
+				document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
 				bevoelkerung += 1;
-				document.getElementById("bevoelkerung").innerHTML = bevoelkerung;
+				document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
 				holzfaellermenge += 1;
-				document.getElementById("holzfaellermenge").innerHTML = holzfaellermenge;
+				document.getElementById("holzfaellermenge").innerHTML = Math.floor(holzfaellermenge);
 			}
 		}
 	}
@@ -155,11 +158,11 @@ function Mienenarbeitereinstellen() {
 		if (maxbevoelkerung > bevoelkerung) {
 			if (mienenarbeitermax > mienenarbeitermenge) {
 				nahrungmenge -= 5;
-				document.getElementById("nahrungmenge").innerHTML = nahrungmenge;
+				document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
 				bevoelkerung += 1;
-				document.getElementById("bevoelkerung").innerHTML = bevoelkerung;
+				document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
 				mienenarbeitermenge += 1;
-				document.getElementById("mienenarbeitermenge").innerHTML = mienenarbeitermenge;
+				document.getElementById("mienenarbeitermenge").innerHTML = Math.floor(mienenarbeitermenge);
 			}
 		}
 	}
@@ -171,11 +174,11 @@ function Farmereinstellen() {
 		if (maxbevoelkerung > bevoelkerung) {
 			if (farmermax> farmermenge) {
 				nahrungmenge -= 5;
-				document.getElementById("nahrungmenge").innerHTML = nahrungmenge;
+				document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
 				bevoelkerung += 1;
-				document.getElementById("bevoelkerung").innerHTML = bevoelkerung;
+				document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
 				farmermenge += 1;
-				document.getElementById("farmermenge").innerHTML = farmermenge;
+				document.getElementById("farmermenge").innerHTML = Math.floor(farmermenge);
 			}
 		}
 	}
@@ -186,21 +189,34 @@ function Buergerholen() {
 	if (nahrungmenge >= 10) {
 		if (maxbevoelkerung > bevoelkerung) {
 			nahrungmenge -= 10;
-			document.getElementById("nahrungmenge").innerHTML = nahrungmenge;
+			document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
 			bevoelkerung += 1;
-			document.getElementById("bevoelkerung").innerHTML = bevoelkerung;
+			document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
 			buergermenge += 1;
-			document.getElementById("buergermenge").innerHTML = buergermenge;
+			document.getElementById("buergermenge").innerHTML = Math.floor(buergermenge);
 			
 		}
 	}
 }
 
+/* Erweiterungen */
+
+function buyWoodUpgrade() {
+	if (holzmenge >= 50 && steinmenge >= 100) {
+		holzmenge -= 50;
+		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
+		steinmenge -= 100;
+		document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
+		holzupgrade = 2;
+		//document.getElementById("woodupgrades").styleSheets.pointer = not-allowed;
+	}
+}
+
 window.setInterval(function() {
 	
-	addWood(holzfaellermenge);
+	addWood(holzfaellermenge*holzupgrade);
 	addStone(mienenarbeitermenge);
 	addFood(farmermenge);
 	addGold(buergermenge);
 	
-}, 5000);
+}, 50 / geschwindigkeit);

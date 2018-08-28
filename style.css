@@ -7,17 +7,21 @@ html {
 	background-color: #F8F8FF;
 	font-size: 10px;
 	cursor: context-menu;
-
 }
-
 button {
-	cursor: -webkit-grab;
+	cursor: pointer; /* -webkit-grab */
 	font-size: 2rem;
     padding: 5px;
 }
-
 button:active{
-	cursor: -webkit-grabbing;
+	cursor: pointer; /* -webkit-grabbing */
+}
+header h1 {
+	background-color: #EEEEF3;
+	font-size: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 /* Resources */
@@ -32,23 +36,19 @@ button:active{
 	border: 1px solid black;
 	background-color: #D3D3D3;
 }
-
 .shows h3{
 	padding: 0;
 	margin: 0;
 	font-size: 2rem;
 }
-
 .shows p{
 	padding: 0;
 	margin: 5px;
 	font-size: 2rem;
 }
-
 .shows span{
 	font-size: 2rem;
 }
-
 .showmainbox{
 	height: auto;
 	overflow: hidden;
@@ -61,7 +61,6 @@ button:active{
 	flex-wrap: wrap;
 	font-size: 2rem;
 }
-
 .showbox {
 	min-width: 20rem;
 	min-height: 10rem;
@@ -77,5 +76,7 @@ button:active{
 footer {
 	font-size: 1.5rem;
 	background-color: white;
-	
+	display: flex;
+	justify-content: left;
+	align-items: center;
 }
