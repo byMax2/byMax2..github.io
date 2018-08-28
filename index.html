@@ -7,11 +7,11 @@
 		<link rel="shortcut icon" type="image/x-icon" href="https://fotos.verwaltungsportal.de/seitengenerator/gross/logo_platzhalter.png">
 		<title>Role-Play-Game | v.4</title>
 	</head>
-	<body>
+	<body><br>
 		<header>
-			<h1><br>RPG | byMax v.4<br></h1>
+			<h1>RPG | byMax v.4<br></h1>
 		</header>
-		<div class="shows">
+		<div class="shows" style="background-color:#FD9883;">
 			<h3>Deine Materialien:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
@@ -22,9 +22,9 @@
 				<p>Stein</p><hr><span id="steinmenge">0</span>
 				</div>
 				
-				<!--<div class="showbox">
+				<div class="showbox">
 				<p>Metal</p><hr><span id="metalmenge">0</span>
-				</div>-->
+				</div>
 				
 				<div class="showbox">
 				<p>Brot</p><hr><span id="nahrungmenge">20</span>
@@ -44,7 +44,7 @@
 			</div>	
 		</div>
 		
-		<div class="shows">
+		<div class="shows" style="background-color:#F5B041;">
 			<h3>Deine Gebäude:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
@@ -69,7 +69,7 @@
 			</div>
 		</div>
 		
-		<div class="shows">
+		<div class="shows" style="background-color:#7DCEA0;">
 			<h3>Dein Volk:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
@@ -94,12 +94,17 @@
 			</div>	
 		</div>
 		
-		<div class="shows">
+		<div class="shows" style="background-color:#BB8FCE;">
 			<h3>Deine Erweiterungen:</h3><br>
 			<div class="showmainbox">
-				<div class="showbox">
+				<div class="showbox" id="holz1">
 					<p>Holzerweiterung</p><hr><p>-50 Holz<br> -100 Stein<br> +Doppelte Effizienz</p><hr>
 					<button id="woodupgrades" onclick="buyWoodUpgrade()">kaufen</button><br>
+				</div>
+				
+				<div class="showbox"id="metal0">
+					<p>Metalbohrer</p><hr><p>-100 Holz<br> -500 Stein<br> +1 Metal alle 10 Sekunden</p><hr>
+					<button id="metalbohrer" onclick="buyMetalUpgrade()">kaufen</button><br>
 				</div>
 			</div>	
 		</div>

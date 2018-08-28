@@ -22,6 +22,7 @@ var farmermenge = 0;
 var buergermenge = 0;
 
 var geschwindigkeit = 100;
+
 /* Buildings */
 
 var lumberhod = 0;
@@ -43,6 +44,7 @@ var farmerhodlvl = 1;
 var residencelvl = 1;
 
 var holzupgrade = 1;
+var metalupgrade = 1;
 
 /* Function Add Resources */
 
@@ -54,8 +56,8 @@ function addStone(i) {
 	steinmenge += i / geschwindigkeit;
 	document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
 }
-function addOneMetal() {
-	metalmenge += 1 / geschwindigkeit;
+function addMetal(i) {
+	metalmenge += (i / geschwindigkeit)/2;
 	document.getElementById("metalmenge").innerHTML = Math.floor(metalmenge);
 }
 function addFood(i) {
@@ -66,8 +68,8 @@ function addGold(i) {
 	goldmenge += i / geschwindigkeit;
 	document.getElementById("goldmenge").innerHTML = Math.floor(goldmenge);
 }
-function addOneSmaragd() {
-	smaragdmenge += 1 / geschwindigkeit;
+function addSmaragd(i) {
+	smaragdmenge += i / geschwindigkeit;
 	document.getElementById("smaragdmenge").innerHTML = Math.floor(smaragdmenge);
 }
 
@@ -202,20 +204,33 @@ function Buergerholen() {
 /* Erweiterungen */
 
 function buyWoodUpgrade() {
-	if (holzmenge >= 50 && steinmenge >= 100) {
+	if (holzmenge >= 50 && steinmenge >= 100 && holzupgrade == 1) {
 		holzmenge -= 50;
 		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
 		steinmenge -= 100;
 		document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
 		holzupgrade = 2;
-		//document.getElementById("woodupgrades").styleSheets.pointer = not-allowed;
+		document.getElementById('holz1').style.visibility= 'hidden';
 	}
 }
+
+function buyMetalUpgrade() {
+	if (holzmenge >= 100 && steinmenge >= 500 && metalupgrade == 1) {
+		holzmenge -= 100;
+		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
+		steinmenge -= 500;
+		document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
+		metalupgrade = 2;
+		document.getElementById('metal0').style.visibility= 'hidden';
+	}
+}
+
 
 window.setInterval(function() {
 	
 	addWood(holzfaellermenge*holzupgrade);
 	addStone(mienenarbeitermenge);
+	addMetal(mienenarbeitermenge*(metalupgrade-1));
 	addFood(farmermenge);
 	addGold(buergermenge);
 	
