@@ -1,226 +1,243 @@
 /* Resources */
 
-var holzmenge = 10;
-var steinmenge = 0;
-var metalmenge = 0;
-var nahrungmenge = 20;
-var goldmenge = 0;
-var smaragdmenge = 0;
+var a_wood = 10;
+var a_stone = 0;
+var a_metal = 0;
+var a_food = 20;
+var a_coins = 0;
+var a_emeralds = 0;
 
-/* Bevoelkerung */
+/* Nation */
 
-var bevoelkerung = 0;
-var maxbevoelkerung = 5;
+var a_population = 0;
+var a_max_population = 5;
 
-var holzfaellermax = 0;
-var mienenarbeitermax = 0;
-var farmermax = 0;
+var a_max_lumejack = 0;
+var a_max_miner = 0;
+var a_max_farmer = 0;
 
-var holzfaellermenge = 0;
-var mienenarbeitermenge = 0;
-var farmermenge = 0;
-var buergermenge = 0;
+var a_lumejack = 0;
+var a_miner = 0;
+var a_farmer = 0;
+var a_citizens = 0;
 
-var geschwindigkeit = 100;
+var a_lumejackcst = 0;
+var a_minercst = 0;
+var a_farmercst = 0;
+var a_citizenscst = 0;
+
 
 /* Buildings */
 
-var lumberhod = 0;
-var mine = 0;
-var farmerhod = 0;
-var residence = 0;
+var a_lumberhod = 0;
+var a_mine = 0;
+var a_farm = 0;
+var a_residence = 1;
 
-var lumberhodcst = Math.floor(10*lumberhod/4+10);
-var minecst = Math.floor(10*mine/4+20);
-var farmerhodcst = Math.floor(10*farmerhod/4+40);
-var residencecst = Math.floor(10*residence/4+50);
-var residencestonecst = Math.floor(10*residence/4+10);
+var a_lumberhodcst = Math.floor(10*a_lumberhod/4+10);
+var a_minecst = Math.floor(10*a_mine/4+20);
+var a_farmcst = Math.floor(10*a_farm/4+40);
+var a_residencecst = Math.floor(10*a_residence/4+50);
+var a_residencestonecst = Math.floor(10*a_residence/4+10);
 
-/* Levels */
+/* Level */
 
-var lumberhodlvl = 1;
-var minelvl = 1;
-var farmerhodlvl = 1;
-var residencelvl = 1;
+var a_lumberhodlvl = 1;
+var a_minelvl = 1;
+var a_farmlvl = 1;
+var a_residencelvl = 1;
 
-var holzupgrade = 1;
-var metalupgrade = 1;
+var a_woodupgrade = 1;
+var a_metalupgrade = 1;
+
+var speed = 100;
 
 /* Function Add Resources */
 
 function addWood(i) {
-	holzmenge += i / geschwindigkeit;
-	document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
+	a_wood += i / speed;
+	document.getElementById("a_wood").innerHTML = Math.floor(a_wood);
 }
 function addStone(i) {
-	steinmenge += i / geschwindigkeit;
-	document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
+	a_stone += i / speed;
+	document.getElementById("a_stone").innerHTML = Math.floor(a_stone);
 }
 function addMetal(i) {
-	metalmenge += (i / geschwindigkeit)/2;
-	document.getElementById("metalmenge").innerHTML = Math.floor(metalmenge);
+	a_metal += (i / speed)/2;
+	document.getElementById("a_metal").innerHTML = Math.floor(a_metal);
 }
 function addFood(i) {
-	nahrungmenge += i / geschwindigkeit;
-	document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
+	a_food += i / speed;
+	document.getElementById("a_food").innerHTML = Math.floor(a_food);
 }
 function addGold(i) {
-	goldmenge += i / geschwindigkeit;
-	document.getElementById("goldmenge").innerHTML = Math.floor(goldmenge);
+	a_coins += i / speed;
+	document.getElementById("a_coins").innerHTML = Math.floor(a_coins);
 }
-function addSmaragd(i) {
-	smaragdmenge += i / geschwindigkeit;
-	document.getElementById("smaragdmenge").innerHTML = Math.floor(smaragdmenge);
+function addemeralds(i) {
+	a_emeralds += i / speed;
+	document.getElementById("a_emeralds").innerHTML = Math.floor(a_emeralds);
 }
 
-/* Function Build Buildings */
+/* Function Buildings */
 
-function addOneLumberHod() {
+function addLumberhod() {
 	
-	if (holzmenge >= lumberhodcst) {
-		holzmenge -= lumberhodcst;
-		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
-		lumberhod += 1;
-		document.getElementById("lumberhod").innerHTML = Math.floor(lumberhod);
-		lumberhodcst = Math.floor(10*lumberhod/4+10);
-		document.getElementById("lumberhodcst").innerHTML = Math.floor(lumberhodcst);
-		holzfaellermax += 2;
-		document.getElementById("holzfaellermax").innerHTML = Math.floor(holzfaellermax);
+	if (a_wood >= a_lumberhodcst) {
+		a_wood -= a_lumberhodcst;
+		document.getElementById("a_wood").innerHTML = Math.floor(a_wood);
+		a_lumberhod += 1;
+		document.getElementById("a_lumberhod").innerHTML = Math.floor(a_lumberhod);
+		a_lumberhodcst = Math.floor(10*a_lumberhod/4+10);
+		document.getElementById("a_lumberhodcst").innerHTML = Math.floor(a_lumberhodcst);
+		a_max_lumejack += 2;
+		document.getElementById("a_max_lumejack").innerHTML = Math.floor(a_max_lumejack);
 	}
 }
 
-function addOneMine() {
+function addMine() {
 	
-	if (holzmenge >= minecst) {
-		holzmenge -= minecst;
-		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
-		mine += 1;
-		document.getElementById("mine").innerHTML = Math.floor(mine);
-		minecst = Math.floor(10*mine/4+20);
-		document.getElementById("minecst").innerHTML = Math.floor(minecst);
-		mienenarbeitermax += 2;
-		document.getElementById("mienenarbeitermax").innerHTML = Math.floor(mienenarbeitermax);
+	if (a_wood >= a_minecst) {
+		a_wood -= a_minecst;
+		document.getElementById("a_wood").innerHTML = Math.floor(a_wood);
+		a_mine += 1;
+		document.getElementById("a_mine").innerHTML = Math.floor(a_mine);
+		a_minecst = Math.floor(10*a_mine/4+20);
+		document.getElementById("a_minecst").innerHTML = Math.floor(a_minecst);
+		a_max_miner += 2;
+		document.getElementById("a_max_miner").innerHTML = Math.floor(a_max_miner);
 	}
 }
 
-function addOneFarmerHod() {
+function addFarm() {
 	
-	if (holzmenge >= farmerhodcst) {
-		holzmenge -= farmerhodcst;
-		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
-		farmerhod += 1;
-		document.getElementById("farmerhod").innerHTML = Math.floor(farmerhod);
-		farmerhodcst = Math.floor(10*farmerhod/4+40);
-		document.getElementById("farmerhodcst").innerHTML = Math.floor(farmerhodcst);
-		farmermax += 2;
-		document.getElementById("farmermax").innerHTML = Math.floor(farmermax);
+	if (a_wood >= a_farmcst) {
+		a_wood -= a_farmcst;
+		document.getElementById("a_wood").innerHTML = Math.floor(a_wood);
+		a_farm += 1;
+		document.getElementById("a_farm").innerHTML = Math.floor(a_farm);
+		a_farmcst = Math.floor(10*a_farm/4+40);
+		document.getElementById("a_farmcst").innerHTML = Math.floor(a_farmcst);
+		a_max_farmer += 2;
+		document.getElementById("a_max_farmer").innerHTML = Math.floor(a_max_farmer);
 	}
 }
 
-function addOneResidence() {
+function addResidence() {
 	
-	if (holzmenge >= residencecst && steinmenge >= residencestonecst) {
-		holzmenge -= residencecst;
-		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
-		steinmenge -= residencestonecst;
-		document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
-		residence += 1;
-		document.getElementById("residence").innerHTML = Math.floor(residence);
-		maxbevoelkerung += 5;
-		document.getElementById("maxbevoelkerung").innerHTML = Math.floor(maxbevoelkerung);
+	if (a_wood >= a_residencecst && a_stone >= a_residencestonecst) {
+		a_wood -= a_residencecst;
+		document.getElementById("a_wood").innerHTML = Math.floor(a_wood);
+		a_stone -= a_residencestonecst;
+		document.getElementById("a_stone").innerHTML = Math.floor(a_stone);
+		a_residence += 1;
+		document.getElementById("a_residence").innerHTML = Math.floor(a_residence);
+		a_max_population += 5;
+		document.getElementById("a_max_population").innerHTML = Math.floor(a_max_population);
 		
-		residencecst = Math.floor(10*residence/4+50);
-		document.getElementById("residencecst").innerHTML = Math.floor(residencecst);
-		residencestonecst = Math.floor(10*residence/4+10);
-		document.getElementById("residencestonecst").innerHTML = Math.floor(residencestonecst);
+		a_residencecst = Math.floor(10*a_residence/4+50);
+		document.getElementById("a_residencecst").innerHTML = Math.floor(a_residencecst);
+		a_residencestonecst = Math.floor(10*a_residence/4+10);
+		document.getElementById("a_residencestonecst").innerHTML = Math.floor(a_residencestonecst);
 	}
 }
 
-/* Function Buy Workers */
+/* Function Workers */
 
-function Holzfaellereinstellen() {
+function adjustLumberjack() {
 	
-	if (nahrungmenge >= 5) {
-		if (maxbevoelkerung > bevoelkerung) {
-			if (holzfaellermax > holzfaellermenge) {
-				nahrungmenge -= 5;
-				document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
-				bevoelkerung += 1;
-				document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
-				holzfaellermenge += 1;
-				document.getElementById("holzfaellermenge").innerHTML = Math.floor(holzfaellermenge);
+	if (a_food >= 5) {
+		if (a_max_population > a_population) {
+			if (a_max_lumejack > a_lumejack) {
+				a_food -= 5;
+				document.getElementById("a_food").innerHTML = Math.floor(a_food);
+				a_population += 1;
+				document.getElementById("a_population").innerHTML = Math.floor(a_population);
+				a_lumejack += 1;
+				document.getElementById("a_lumejack").innerHTML = Math.floor(a_lumejack);
 			}
 		}
 	}
 }
 
-function Mienenarbeitereinstellen() {
+function adjustMiner() {
 	
-	if (nahrungmenge >= 5) {
-		if (maxbevoelkerung > bevoelkerung) {
-			if (mienenarbeitermax > mienenarbeitermenge) {
-				nahrungmenge -= 5;
-				document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
-				bevoelkerung += 1;
-				document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
-				mienenarbeitermenge += 1;
-				document.getElementById("mienenarbeitermenge").innerHTML = Math.floor(mienenarbeitermenge);
+	if (a_food >= 5) {
+		if (a_max_population > a_population) {
+			if (a_max_miner > a_miner) {
+				a_food -= 5;
+				document.getElementById("a_food").innerHTML = Math.floor(a_food);
+				a_population += 1;
+				document.getElementById("a_population").innerHTML = Math.floor(a_population);
+				a_miner += 1;
+				document.getElementById("a_miner").innerHTML = Math.floor(a_miner);
 			}
 		}
 	}
 }
 
-function Farmereinstellen() {
+function adjustFarmer() {
 	
-	if (nahrungmenge >= 5) {
-		if (maxbevoelkerung > bevoelkerung) {
-			if (farmermax> farmermenge) {
-				nahrungmenge -= 5;
-				document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
-				bevoelkerung += 1;
-				document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
-				farmermenge += 1;
-				document.getElementById("farmermenge").innerHTML = Math.floor(farmermenge);
+	if (a_food >= 5) {
+		if (a_max_population > a_population) {
+			if (a_max_farmer> a_farmer) {
+				a_food -= 5;
+				document.getElementById("a_food").innerHTML = Math.floor(a_food);
+				a_population += 1;
+				document.getElementById("a_population").innerHTML = Math.floor(a_population);
+				a_farmer += 1;
+				document.getElementById("a_farmer").innerHTML = Math.floor(a_farmer);
 			}
 		}
 	}
 }
 
-function Buergerholen() {
+function getCitizen() {
 	
-	if (nahrungmenge >= 10) {
-		if (maxbevoelkerung > bevoelkerung) {
-			nahrungmenge -= 10;
-			document.getElementById("nahrungmenge").innerHTML = Math.floor(nahrungmenge);
-			bevoelkerung += 1;
-			document.getElementById("bevoelkerung").innerHTML = Math.floor(bevoelkerung);
-			buergermenge += 1;
-			document.getElementById("buergermenge").innerHTML = Math.floor(buergermenge);
+	if (a_food >= 10) {
+		if (a_max_population > a_population) {
+			a_food -= 10;
+			document.getElementById("a_food").innerHTML = Math.floor(a_food);
+			a_population += 1;
+			document.getElementById("a_population").innerHTML = Math.floor(a_population);
+			a_citizens += 1;
+			document.getElementById("a_citizens").innerHTML = Math.floor(a_citizens);
 			
 		}
 	}
 }
 
-/* Erweiterungen */
+/* Trades */
+
+function tradeEmeralds() {
+	if (a_coins >= 10) {
+		a_coins -= 10;
+		document.getElementById("a_coins").innerHTML = Math.floor(a_coins);
+		a_emeralds += 1;
+		document.getElementById("a_emeralds").innerHTML = Math.floor(a_emeralds);
+	}
+}
+
+/* Upgreades */
 
 function buyWoodUpgrade() {
-	if (holzmenge >= 50 && steinmenge >= 100 && holzupgrade == 1) {
-		holzmenge -= 50;
-		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
-		steinmenge -= 100;
-		document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
-		holzupgrade = 2;
+	if (a_wood >= 50 && a_stone >= 100 && a_woodupgrade == 1) {
+		a_wood -= 50;
+		document.getElementById("a_wood").innerHTML = Math.floor(a_wood);
+		a_stone -= 100;
+		document.getElementById("a_stone").innerHTML = Math.floor(a_stone);
+		a_woodupgrade = 2;
 		document.getElementById('holz1').style.visibility= 'hidden';
 	}
 }
 
 function buyMetalUpgrade() {
-	if (holzmenge >= 100 && steinmenge >= 500 && metalupgrade == 1) {
-		holzmenge -= 100;
-		document.getElementById("holzmenge").innerHTML = Math.floor(holzmenge);
-		steinmenge -= 500;
-		document.getElementById("steinmenge").innerHTML = Math.floor(steinmenge);
-		metalupgrade = 2;
+	if (a_wood >= 100 && a_stone >= 500 && a_metalupgrade == 1) {
+		a_wood -= 100;
+		document.getElementById("a_wood").innerHTML = Math.floor(a_wood);
+		a_stone -= 500;
+		document.getElementById("a_stone").innerHTML = Math.floor(a_stone);
+		a_metalupgrade = 2;
 		document.getElementById('metal0').style.visibility= 'hidden';
 	}
 }
@@ -228,10 +245,10 @@ function buyMetalUpgrade() {
 
 window.setInterval(function() {
 	
-	addWood(holzfaellermenge*holzupgrade);
-	addStone(mienenarbeitermenge);
-	addMetal(mienenarbeitermenge*(metalupgrade-1));
-	addFood(farmermenge);
-	addGold(buergermenge);
+	addWood(a_lumejack*a_woodupgrade);
+	addStone(a_miner);
+	addMetal(a_miner*(a_metalupgrade-1));
+	addFood(a_farmer);
+	addGold(a_citizens);
 	
-}, 50 / geschwindigkeit);
+}, 50 / speed);
