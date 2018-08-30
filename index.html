@@ -6,17 +6,29 @@
 		<script src="main.js"></script>
 		<link rel="shortcut icon" type="image/x-icon" href="https://fotos.verwaltungsportal.de/seitengenerator/gross/logo_platzhalter.png">
 		<title>Role-Play-Game | v.5</title>
+		<script src="js/sweetalert.min.js"></script>
+		<script src="js/push.min.js"></script>
 	</head>
 	<body><br>
 		<header>
 			<h1>RPG | byMax v.5<br></h1>
 		</header>
-		<script src="js/sweetalert.min.js"></script>
 		<script>
 			swal({
-				icon: "info",
+				icon: "warning",
 				title: "Logisches Denken",
 				text: "Dieses Spiel erfordert logisches Denken. Nicht zu früh handeln!",
+			});
+		</script>
+		<script>
+			Push.create("Hello world!", {
+				body: "How's it hangin'?",
+				icon: '/icon.png',
+				timeout: 4000,
+				onClick: function () {
+					window.focus();
+					this.close();
+				}
 			});
 		</script>
 		<div class="shows" style="background-color:#fff9ca;">
