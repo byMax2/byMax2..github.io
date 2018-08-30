@@ -98,7 +98,7 @@
 				</div>
 				
 				<div class="showbox">
-					<p>Bergarbeiter | <span id="a_mine">0</span>/<span id="a_max_miner">0</span></p><hr><p>-<span id="a_minecst">5</span> Bort<br> -1 Bergarbeiterplatz<br> +1 Bergarbeiter<br> +1 Stein alle 5 Sekunden</p><hr>
+					<p>Bergarbeiter | <span id="a_miner">0</span>/<span id="a_max_miner">0</span></p><hr><p>-<span id="a_minecst">5</span> Bort<br> -1 Bergarbeiterplatz<br> +1 Bergarbeiter<br> +1 Stein alle 5 Sekunden</p><hr>
 					<button onclick="adjustMiner()">einstellen</button><br><br>
 				</div>
 				
@@ -114,17 +114,17 @@
 			</div>	
 		</div>
 		
-		<div class="shows" style="background-color:#ffcade;">
+		<div  class="shows" id="marketsquare" style="background-color:#ffcade;display:none;">
 			<h3>Marktplatz:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
-					<p>Smaragd Handel</p><hr><p>-10 Münzen</p><hr>
+					<p>Smaragd Handel</p><hr><p>-200 Münzen</p><hr>
 					<button onclick="tradeEmeralds()">handeln</button><br><br>
 				</div>
 			</div>	
 		</div>
 		
-		<div class="shows" style="background-color:#dfcaff;">
+		<div class="shows" id="achivements"style="background-color:#dfcaff;">
 			<h3>Deine Erweiterungen:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox" id="holz1">

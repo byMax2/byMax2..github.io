@@ -210,8 +210,8 @@ function getCitizen() {
 /* Trades */
 
 function tradeEmeralds() {
-	if (a_coins >= 10) {
-		a_coins -= 10;
+	if (a_coins >= 200) {
+		a_coins -= 200;
 		document.getElementById("a_coins").innerHTML = Math.floor(a_coins);
 		a_emeralds += 1;
 		document.getElementById("a_emeralds").innerHTML = Math.floor(a_emeralds);
@@ -227,7 +227,10 @@ function buyWoodUpgrade() {
 		a_stone -= 100;
 		document.getElementById("a_stone").innerHTML = Math.floor(a_stone);
 		a_woodupgrade = 2;
-		document.getElementById('holz1').style.visibility= 'hidden';
+		document.getElementById('holz1').style.display= 'none';
+	}
+	if (document.getElementById('metal0').style.display == 'none') {
+		document.getElementById('achivements').style.display = 'none'
 	}
 }
 
@@ -238,7 +241,10 @@ function buyMetalUpgrade() {
 		a_stone -= 500;
 		document.getElementById("a_stone").innerHTML = Math.floor(a_stone);
 		a_metalupgrade = 2;
-		document.getElementById('metal0').style.visibility= 'hidden';
+		document.getElementById('metal0').style.display= 'none';
+	}
+	if (document.getElementById('holz1').style.display == 'none') {
+		document.getElementById('achivements').style.display = 'none'
 	}
 }
 
@@ -250,5 +256,10 @@ window.setInterval(function() {
 	addMetal(a_miner*(a_metalupgrade-1));
 	addFood(a_farmer);
 	addGold(a_citizens);
+	
+	if (document.getElementById('marketsquare').style.display == 'none' && a_coins >= 20) {
+		document.getElementById('marketsquare').style.display = 'block';
+	}
+	
 	
 }, 50 / speed);
