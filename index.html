@@ -20,7 +20,7 @@
 				text: "Dieses Spiel erfordert logisches Denken. Nicht zu früh handeln!",
 			});
 		</script>
-		<script>
+		<!--<script>
 			Push.create("Willkommen auf Role-Play-Game", {
 				body: "Dieses Spiel ist ein Taktisches Spiel!",
 				icon: "https://fotos.verwaltungsportal.de/seitengenerator/gross/logo_platzhalter.png",
@@ -30,7 +30,7 @@
 					this.close();
 				}
 			});
-		</script>
+		</script>-->
 		<div class="shows" style="background-color:#fff9ca;">
 			<h3>Deine Materialien:</h3><br>
 			<div class="showmainbox">
@@ -89,42 +89,47 @@
 			</div>
 		</div>
 		
-		<div class="shows" style="background-color:#cae0ff;">
+		<div class="shows" id="populace" style="display:none;background-color:#cae0ff;">
 			<h3>Dein Volk:</h3><br>
 			<div class="showmainbox">
-				<div class="showbox">
+				<div class="showbox" id="lumberjack" style="display:none;">
 					<p>Holzfäller | <span id="a_lumejack">0</span>/<span id="a_max_lumejack">0</span></p><hr><p>-<span id="a_lumejackcst">5</span> Brot<br> -1 Holzfällerplatz<br> +1 Holzfäller<br> +1 Holz alle 5 Sekunden</p><hr>
 					<button onclick="adjustLumberjack()">einstellen</button><br><br>
 				</div>
 				
-				<div class="showbox">
+				<div class="showbox" id="miner" style="display:none;">
 					<p>Bergarbeiter | <span id="a_miner">0</span>/<span id="a_max_miner">0</span></p><hr><p>-<span id="a_minecst">5</span> Bort<br> -1 Bergarbeiterplatz<br> +1 Bergarbeiter<br> +1 Stein alle 5 Sekunden</p><hr>
 					<button onclick="adjustMiner()">einstellen</button><br><br>
 				</div>
 				
-				<div class="showbox">
+				<div class="showbox" id="farmer" style="display:none;">
 					<p>Bauern | <span id="a_farmer">0</span>/<span id="a_max_farmer">0</span></p><hr><p>-<span id="a_farmercst">5</span> Brot<br> -1 Bauernplatz<br> +1 Bauern<br> +1 Brot alle 5 Sekunden</p><hr>
 					<button onclick="adjustFarmer()">einstellen</button><br><br>
 				</div>
 				
-				<div class="showbox">
+				<div class="showbox" id="citizen" style="display:none;">
 					<p>Bürger | <span id="a_citizens">0</span></p><hr><p>-<span id="a_citizenscst">10</span> Brot<br> -1 Bevölkerung<br> +1 Bürger<br> +1 Münzen alle 5 Sekunden</p><hr>
 					<button onclick="getCitizen()">holen</button><br><br>
 				</div>
 			</div>	
 		</div>
 		
-		<div  class="shows" id="marketsquare" style="background-color:#ffcade;display:none;">
+		<div  class="shows" id="marketsquare" style="display:none;background-color:#ffcade;">
 			<h3>Marktplatz:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
 					<p>Smaragd Handel</p><hr><p>-200 Münzen</p><hr>
 					<button onclick="tradeEmeralds()">handeln</button><br><br>
 				</div>
+				
+				<div class="showbox" id="tradeachivementmap">
+					<p>Erweiterungskarte Handel</p><hr><p>-15 Smaragde</p><hr>
+					<button onclick="tradeAchivementMap()">handeln</button><br><br>
+				</div>
 			</div>	
 		</div>
 		
-		<div class="shows" id="achivements"style="background-color:#dfcaff;">
+		<div class="shows" id="achivements" style="display:none;background-color:#dfcaff;">
 			<h3>Deine Erweiterungen:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox" id="holz1">

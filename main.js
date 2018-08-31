@@ -218,6 +218,16 @@ function tradeEmeralds() {
 	}
 }
 
+function tradeAchivementMap() {
+	if (a_emeralds >= 15) {
+		a_emeralds -= 15;
+		document.getElementById("a_emeralds").innerHTML = Math.floor(a_emeralds);
+		document.getElementById('achivements').style.display = 'block'
+		document.getElementById('tradeachivementmap').style.display = 'none'
+		
+	}
+}
+
 /* Upgreades */
 
 function buyWoodUpgrade() {
@@ -260,6 +270,27 @@ window.setInterval(function() {
 	if (document.getElementById('marketsquare').style.display == 'none' && a_coins >= 20) {
 		document.getElementById('marketsquare').style.display = 'block';
 	}
+	if (document.getElementById('populace').style.display == 'none' && (a_lumberhod >= 1 || a_mine >= 1 || a_farm >= 1)) {
+		document.getElementById('populace').style.display = 'block';
+	}
+	if (document.getElementById('lumberjack').style.display == 'none' && a_lumberhod >= 1) {
+		document.getElementById('lumberjack').style.display = 'block';
+	}
+	if (document.getElementById('miner').style.display == 'none' && a_mine >= 1) {
+		document.getElementById('miner').style.display = 'block';
+	}
+	if (document.getElementById('farmer').style.display == 'none' && a_farm >= 1) {
+		document.getElementById('farmer').style.display = 'block';
+	}
+	if (document.getElementById('citizen').style.display == 'none' && a_farm >= 1 && a_food >= 10) {
+		document.getElementById('citizen').style.display = 'block';
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 }, 50 / speed);
