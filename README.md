@@ -1,2 +1,1 @@
-# byMax2..github.io
-An RPG by Me, byMax
+It's WARE Web Action Rolplay!
