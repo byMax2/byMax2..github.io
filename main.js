@@ -286,19 +286,4 @@ window.setInterval(function() {
 		document.getElementById('citizen').style.display = 'block';
 	}
 	
-	
-			Push.create("Willkommen auf Role-Play-Game", {
-				body: "Dieses Spiel ist ein Taktisches Spiel!",
-				icon: "https://fotos.verwaltungsportal.de/seitengenerator/gross/logo_platzhalter.png",
-				timeout: 4000,
-				onClick: function () {
-					window.focus();
-					this.close();
-				}
-			});
-	
-	
-	
-	
-	
 }, 50 / speed);
