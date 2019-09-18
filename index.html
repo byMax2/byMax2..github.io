@@ -1,81 +1,132 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link rel="stylesheet" href="style.css"> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<link rel="shortcut icon" type="image/x-icon" href="https://img00.deviantart.net/5319/i/2012/158/8/f/_almost__rarity__s_crown_by_vectorshy-d52luxi.png">
-		<title>Hörtest</title>
-			<script src="js/sweetalert.min.js"></script>
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<!--	<link rel="stylesheet" href="style.css">  
+		<link rel="stylesheet" href="style.css">  -->
+		<script src="main.js"></script>
+		<link rel="shortcut icon" type="image/x-icon" href="https://fotos.verwaltungsportal.de/seitengenerator/gross/logo_platzhalter.png">
+		<title>Seitenverzeichnis</title>
+		<script src="js/sweetalert.min.js"></script>
 		<script src="js/push.min.js"></script>
-		<script defer src="./libs/p5.js"></script>
-		<script defer src="./libs/p5s.js"></script>
 	</head>
+	<style>
+html {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	font-family: monospace;
+	background-color: #F8F8FF;
+	font-size: 10px;
+	cursor: context-menu;
+}
+button {
+	cursor: pointer; /* -webkit-grab */
+	font-size: 2rem;
+    padding: 5px;
+	font-family: monospace;
+}
+button:active{
+	cursor: pointer; /* -webkit-grabbing */
+}
+header h1 {
+	background-color: white;
+	font-size: 3rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* Resources */
+
+.shows {
+	width: 99%;
+	height: auto;
+	min-height: 17rem;
+	overflow: hidden;
+	padding: 0.5%;
+	margin: 1%;
+	border: 1px solid black;
+	background-color: #D3D3D3;
+}	
+.shows h3{
+	padding: 0;
+	margin: 0;
+	font-size: 2rem;
+}
+.shows p{
+	padding: 0;
+	margin: 5px;
+	font-size: 2rem;
+}
+.shows span{
+	font-size: 2rem;
+}
+.showmainbox{
+	height: auto;
+	overflow: hidden;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	font-size: 2rem;
+}
+.showbox {
+	min-width: 20rem;
+	min-height: 10rem;
+	margin: 1%;
+	padding: 0.5%;
+	border: 1px solid black;
+	background-color: white;
+	text-align: center;
+	height: auto;
+	width: auto;
+	overflow: hidden;
+}
+footer {
+	font-size: 1.5rem;
+	background-color: white;
+	display: flex;
+	justify-content: right;
+	align-items: center;
+}
+footer button {
+	font-size: 1rem;
+    padding: 1px;
+}
+	</style>
 	<body><br>
 		<header>
-			<h1>Hörtest<br></h1>
+			<h1>Seitenverzeichnis<br></h1>
 		</header>
-		<script>
-			swal({
-				icon: "warning",
-				title: "Hörschäden",
-				text: "Dieser Test könnte möglicherweise ungewollte Hörschäden verursachen, ich übernehme keine Haftung!",
-			});
-		</script>
-		<script>
-			Push.create("Hörschäden", {
-				body: "Dieser Test könnte möglicherweise ungewollte Hörschäden verursachen, ich übernehme keine Haftung!",
-				timeout: 4000,
-				onClick: function () {
-					window.focus();
-					this.close();
-				}
-			});
-		</script>
-		<div class="shows" style="background-color:#fff9ca;">
-			<h3>Frequenz:</h3><br>
+		<div class="shows" style="background-color:#FF9F8A;">
+			<h3>Spiele:</h3><br>
 			<div class="showmainbox">
 				<div class="showbox">
-					<div id="buttons">
-						<button id="play"><i class="fa fa-play" aria-hidden="true"></i></button>
-					</div>
+				<p>Role-Play-Game Version 5</p><hr>
+				<button onclick="seiteWechseln('RPG/index.html')">öffnen</button>
 				</div>
+			</div>	
+		</div>
+		<div class="shows" style="background-color:rgb(202, 224, 255);">
+			<h3>Tests:</h3><br>
+			<div class="showmainbox">
 				<div class="showbox">
-					<div id="input">
-						<input id="fq" type="number"> Hz
-					</div>
-				</div>
-				<div class="showbox">
-					<div id="buttons">
-						<button id="pause"><i class="fa fa-pause" aria-hidden="true"></i></button>
-					</div>
+				<p>Hörtest</p><hr>
+				<button onclick="seiteWechseln('Hearing/index.html')">öffnen</button>
 				</div>
 			</div>	
 		</div>
 		<footer>
-			© Maximilain Lude, 2019
+			© Maximilain Lude, 2018
 		</footer>
 	</body>
 	<script>
-	let sound;
-	let play;	
-		$(window).ready(function () {
-			sound = new p5.Oscillator();
-			sound.setType('sine');
-			sound.amp(0);	
-			sound.start();
-			$('#fq').val(300);
-			sound.freq(parseFloat($('#fq').val()));
-			play = false;
-		});
-		$('#fq').on('input', function() {
-			sound.freq(parseFloat($('#fq').val()));
-		});		
-		$('#play').on('click', function() {
-			sound.amp(0.7, 0.15);
-		});
-		$('#pause').on('click', function() {
-			sound.amp(0, 0.15);
-		});
+		function seiteWechseln(seite) {
+		window.open(seite);
+	}
 	</script>
 </html>
