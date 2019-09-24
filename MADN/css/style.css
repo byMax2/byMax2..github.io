@@ -1,0 +1,160 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: monospace;
+	/*cursor: no-drop;*/
+}
+
+.noselect {-moz-user-select: none;user-select: none;}
+
+header {
+}
+
+body {
+}
+
+#current {
+	float: right;
+	margin-top: 1%;
+	margin-right: 5%;
+}
+
+#dice {
+	float: left;
+	margin-top: 1%;
+	margin-left: 5%;
+}
+
+h1 {
+	text-align: center;
+	margin: 0.1% 0;
+	/*cursor: help;*/
+}
+
+#content {
+	margin: 0 auto;
+	background-color: #E6E6E6;
+	border: black 2px dotted;
+	position: relative;
+}
+
+
+.spielfeld {
+	background-color: white;
+	/*cursor: cell;*/
+}
+
+.feld {
+	position: absolute;
+	height: 40%;
+	width: 40%;
+	margin: 5%;
+	border: black solid 1px;
+	border-radius: 25px;
+	z-index: 1;
+}
+
+.spielfeld .feld {
+	position: relative;
+	float: left;
+	height: 20%;
+	width: 20%;
+	margin: 2% 5.5%;
+	z-index: 1;
+}
+
+#mitte .feld {
+	position: relative;
+	float: left;
+	height: 20%;
+	width: 6.4%;
+	margin: 2% 1.2%;
+	z-index: 1;
+}
+
+
+.haus {
+	width: 20%;
+	height: 20%;
+	/*cursor: grab;*/
+}
+
+.spielfigur {
+	width: 75%;
+	height: 75%;
+	/*background-color: black;*/
+	margin: 12.5%;
+	border: black solid 1px;
+	border-radius: 50px;
+	z-index: 2;
+}
+
+#gelb {
+	background-color: yellow;
+	position: absolute;
+}
+
+#gruen {
+	background-color: green;
+	position: absolute;
+	left: 80%;
+	
+}
+
+#blau {
+	background-color: #2E2EFE;
+	position: absolute;
+	bottom: 0%;
+}
+
+#rot {
+	background-color: red;
+	position: absolute;
+	bottom: 0%;
+	left: 80%;
+}
+
+#oben {
+	width: calc(100%/3);
+	height: calc(100%/3);
+	position: absolute;
+	left: calc(100%/3);
+}
+
+#mitte {
+	width: 100%;
+	height: calc(100%/3);	
+	position: absolute;
+	top: calc(100%/3);
+}
+#unten {
+	width: calc(100%/3);
+	height: calc(100%/3);
+	position: absolute;
+	top: calc(100%/3*2);
+	left: calc(100%/3);
+}
+
+.feld2 {
+	left: 48%;
+}
+.feld3 {
+	top: 48%;
+}
+.feld4 {
+	left: 48%;
+	top: 48%;
+}
+
+#feld33 {
+	cursor: pointer;
+	text-align: center;
+	border-radius: 0px;
+	-moz-user-select: none;user-select: none;
+}
+
+#feld33 p {
+	margin-top: 35%;
+	font-size: 80%;
+}
+

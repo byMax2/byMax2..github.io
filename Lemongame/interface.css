@@ -1,0 +1,625 @@
+body 
+{
+	background-color: black;
+    width: 99%;
+    height: 100%;
+}
+.picture {
+    width: 100%;
+    height: 100%;
+}
+.wrapper {
+    float: none;
+    
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 40px;
+	font-family: serif;
+	color: black;
+}
+.dividerL {
+    float: none;
+    
+    width: 100%;
+    height: 1px;
+    text-align: center;
+    font-size: 40px;
+	font-family: serif;
+	color: black;
+	
+	background-color:  	black;
+}
+.dividerH {
+    float: none;
+    
+    width: 1px;
+    height: 100%;
+    text-align: center;
+    font-size: 40px;
+	font-family: serif;
+	color: black;
+	
+	background-color:  	black;
+}
+.top {
+    float: none;
+    
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 40px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+}
+.full {
+    float: left;
+    
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    font-size: 18px;
+	font-family: serif;
+	color: black;
+}
+.left_bar_resources {
+    float: left;
+    
+    width: 24.4%;
+    height: 100%;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	
+    background-color:  #ffd7d7;
+}
+.right_bar_buildings {
+    float: right;
+    
+    width: 73.4%;
+    height: 100%;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	
+    background-color: #f5ffd7;
+}
+.left_bar_production {
+    float: left;
+    
+    width: 29.4%;
+    height: 100%;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	
+    background-color: #d7ffee;
+}
+.right_bar_combat {
+    float: right;
+    
+    width: 68.4%;
+    height: 100%;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff ;
+	color: black;
+	
+    outline: 1px solid black;
+	
+    background-color:  #d7deff;
+}
+.bottom_bar_upgrades {
+    float: left;
+    
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	
+    background-color:  #ead7ff ;
+}
+.bottom_bar_prestige {
+    float: left;
+    
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	
+    background-color:  #fad7a0  ;
+}
+.buildings_scroll {
+    float: right;
+    
+    width: 100%;
+    height: 22vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 0px 0px #ffffff;
+	color: black;
+	
+    background-color:   #e3ffba  ;
+	overflow: auto;
+}
+.resources_scroll {
+    float: left;
+    
+    width: 100%;
+    height: 22vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 0px 0px #ffffff;
+	color: black;
+	
+    background-color:  #ffbaba ;
+	overflow:auto;
+}
+.production_scroll {
+    float: left;
+    
+    width: 100%;
+    height: 22vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    background-color:  #bafcff ;
+	overflow:auto;
+}
+.combat_scroll {
+    float: right;
+    
+    width: 100%;
+    height: 22vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    background-color:  	 #b7caff ;
+}
+.upgrades_scroll {
+    float: left;
+    
+    width: 100%;
+    height: 22vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    background-color:  #d5aeff ;
+	overflow:auto;
+}
+.prestige_scroll {
+    float: left;
+    
+    width: 100%;
+    height: 22vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    background-color:    #f8c471   ;
+	overflow:auto;
+}
+.resource {
+    float: left;
+    
+    width: 100%;
+    height: 2.3vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	color: black;
+	
+    outline: 1px solid black;
+	
+	background-color:  #dbdbdb;
+}
+.resource_namespace {
+    float: left;
+    
+    width: 50%;
+    height: 2.3vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	color: black;
+	
+	background-color:  #dbdbdb;
+}
+.resource_amntspace {
+    float: right;
+    
+    width: 50%;
+    height: 2.3vw;
+    text-align: right;
+    font-size: 24px;
+	font-family: serif;
+	color: black;
+	
+	background-color:  #dbdbdb;
+}
+.presource_namespace {
+    float: left;
+    
+    width: 50%;
+    height: 2.3vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #00FF00;
+	color: black;
+	
+	background-color:  #dbdbdb;
+}
+.presource_amntspace {
+    float: right;
+    
+    width: 50%;
+    height: 2.3vw;
+    text-align: right;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 2px 2px #00FF00;
+	color: black;
+	
+	background-color:  #dbdbdb;
+}
+.building {
+    float: left;
+    
+    width: 33.3%;
+    height: 10vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	color: black;
+	
+	background-color:  #dbdbdb;
+}
+.building_namespace {
+    float: left;
+    
+    width: 70%;
+    height: 2.2vw;
+    text-align: center;
+    font-size: 22px;
+	font-family: serif;
+	color: black;
+	
+	background-color:   #f0f0f0 ;
+    outline: 1px solid black;
+}
+.building_amntspace {
+    float: right;
+    
+    width: 30%;
+    height: 2.2vw;
+    text-align: center;
+    font-size: 18px;
+	font-family: serif;
+	color: black;
+	
+	background-color:   #fbfbfb ;
+    outline: 1px solid black;
+}
+.building_descspace {
+    float: left;
+    
+    width: 100%;
+    height: 3.4vw;
+    text-align: center;
+    font-size: 16px;
+	font-family: serif;
+	color: black;
+	
+	background-color:   #e3e3e3 ;
+    outline: 1px solid black;
+}
+.building_bottomspace {
+    float: left;
+    
+    width: 100%;
+    height: 2.2vw;
+    text-align: center;
+    font-size: 22px;
+	font-family: serif;
+	color: black;
+	
+	background-color:  #dbdbdb;
+    outline: 1px solid black;
+}
+.building_effectspace {
+    float: left;
+    
+    width: 100%;
+    height: 2.2vw;
+    text-align: center;
+    font-size: 16px;
+	font-family: serif;
+	color: black;
+	
+	background-color:   #d7d7d7 ;
+    outline: 1px solid black;
+}
+.building_buttonspace {
+    float: left;
+    
+    width: 46%;
+    height: 2.2vw;
+    text-align: left;
+    font-size: 16px;
+	font-family: serif;
+	color: black;
+	background-color:   #cccccc ;
+}
+.building_costspace {
+    float: right;
+    
+    width: 54%;
+    height: 2.2vw;
+    text-align: right;
+    font-size: 18px;
+	font-family: serif;
+	color: black;
+	
+	background-color:   #cccccc ;
+}
+.prod_box {
+    float: left;
+    
+    width: 100%;
+    height: 6vw;
+    text-align: left;
+    font-size: 24px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #dbdbdb;
+}
+.prod_namespace {
+    float: left;
+    
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #f0f0f0;
+}
+.prod_descspace {
+    float: left;
+    
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 16px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #dfdfdf;
+}
+.prod_effectspace {
+    float: left;
+    
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 16px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #cfcfcf ;
+}
+.prod_buttonspace {
+    float: left;
+    
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #bebebe ;
+}
+.exploration {
+    float: left;
+    
+    width: 50%;
+    height: 100%;
+    text-align: center;
+    font-size: 30px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+    outline: 1px solid black;
+	
+	background-color:  #bbbbff;
+}
+.golemInfo {
+    float: left;
+    
+    width: 35%;
+    height: 100%;
+    text-align: left;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+    outline: 1px solid black;
+	
+	background-color:  #ccffcc;
+}
+.golemOdds {
+    float: right;
+    
+    width: 15%;
+    height: 100%;
+    text-align: left;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+    outline: 1px solid black;
+	
+	background-color:  #ffcccc;
+}
+.upgrade {
+    float: left;
+    
+    width: 20%;
+    height: 40%;
+    text-align: center;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #dbdbdb;
+}
+.upgr_namespace {
+    float: left;
+    
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #f0f0f0;
+}
+.upgr_descspace {
+    float: left;
+    
+    width: 100%;
+    height: 55%;
+    text-align: center;
+    font-size: 18px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #e3e3e3;
+}
+.upgr_buttonspace {
+    float: left;
+    
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:  #cccccc;
+}
+.pupgrade {
+    float: left;
+    
+    width: 33%;
+    height: 50%;
+    text-align: center;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 2px 2px #00FF00;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:    #f5b041  ;
+}
+.pupgr_namespace {
+    float: left;
+    
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    font-size: 20px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:     #ffd397   ;
+}
+.pupgr_descspace {
+    float: left;
+    
+    width: 100%;
+    height: 55%;
+    text-align: center;
+    font-size: 18px;
+	font-family: serif;
+	text-shadow: 1px 1px #ffffff;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:     #ffce86   ;
+}
+.pupgr_buttonspace {
+    float: left;
+    
+    width: 100%;
+    height: 25%;
+    text-align: center;
+    font-size: 20px;
+	font-family: serif;
+	color: black;
+	
+    outline: 1px solid black;
+	background-color:     #ffc973   ;
+}

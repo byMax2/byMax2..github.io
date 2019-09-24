@@ -3,7 +3,50 @@
 		<meta charset="utf-8">
 		<title>Programmverzeichnis</title>
 	</head>
-	<style>
+	<body><br>
+		<header>
+			<h1>Programmverzeichnis<br></h1>
+		</header>
+		<div class="shows" style="background-color:#FF9F8A;">
+			<h3>Spiele:</h3><br>
+			<div class="showmainbox">
+				<div class="showbox">
+				<p>Role-Play-Game</p><hr>
+				<button onclick="seiteWechseln('RPG/index.html')">spielen</button>
+				</div>
+				<div class="showbox">
+				<p>Dimension</p><hr>
+				<button onclick="seiteWechseln('Dimension/index.html')">spielen</button>
+				</div>
+				<div class="showbox">
+				<p>Lemongame</p><hr>
+				<button onclick="seiteWechseln('Lemongame/index.html')">spielen</button>
+				</div>
+				<div class="showbox">
+				<p>MADN</p><hr>
+				<button onclick="seiteWechseln('MADN/index.html')">spielen</button>
+				</div>
+			</div>	
+		</div>
+		<div class="shows" style="background-color:#fff9ca;">
+			<h3>Tests:</h3><br>
+			<div class="showmainbox">
+				<div class="showbox">
+				<p>Hörtest</p><hr>
+				<button onclick="seiteWechseln('Hearing/index.html')">starten</button>
+				</div>
+			</div>	
+		</div>
+		<footer>
+			© Maximilain Lude, 2018
+		</footer>
+	</body>
+	<script>
+		function seiteWechseln(seite) {
+		window.open(seite);
+	}
+	</script>
+		<style>
 html {
 	width: 100%;
 	height: 100%;
@@ -91,35 +134,4 @@ footer button {
     padding: 1px;
 }
 	</style>
-	<body><br>
-		<header>
-			<h1>Programmverzeichnis<br></h1>
-		</header>
-		<div class="shows" style="background-color:#FF9F8A;">
-			<h3>Spiele:</h3><br>
-			<div class="showmainbox">
-				<div class="showbox">
-				<p>Role-Play-Game</p><hr>
-				<button onclick="seiteWechseln('RPG/index.html')">öffnen</button>
-				</div>
-			</div>	
-		</div>
-		<div class="shows" style="background-color:#fff9ca;">
-			<h3>Tests:</h3><br>
-			<div class="showmainbox">
-				<div class="showbox">
-				<p>Hörtest</p><hr>
-				<button onclick="seiteWechseln('Hearing/index.html')">öffnen</button>
-				</div>
-			</div>	
-		</div>
-		<footer>
-			© Maximilain Lude, 2018
-		</footer>
-	</body>
-	<script>
-		function seiteWechseln(seite) {
-		window.open(seite);
-	}
-	</script>
 </html>
