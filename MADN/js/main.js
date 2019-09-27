@@ -217,6 +217,7 @@ function checkWin() {
 		$('#info').html("Der Spieler mit der Farbe <b>" + current.toUpperCase() + "</b> hat das Spiel gewonnen!");
 		$('#current').html("");
 		$('#dice').html("");
+		confetti.start();
 	}
 
 }
