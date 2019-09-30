@@ -1,0 +1,43 @@
+html {
+	background-color: rgb(28,28,28);
+	text-align: center;
+}
+
+canvas {
+	position: absolute;
+	left: 13%;
+	top: 7%;
+	border: 1px solid white;
+	margin: 0px;
+	padding: 0px;
+}
+
+#myCanvas {
+	background-color: rgb(30,30,30) !important;
+	z-index: 0;
+}
+
+h1 {
+	font-size: 30px;
+	margin: 0px;
+	padding: 0px;
+	line-height: 1.5;
+}
+
+h2 {
+	font-size: 26px;
+	margin: 0px;
+	padding: 0px;
+	line-height: 1;
+}
+
+h3 {
+	font-size: 18px;
+	margin: 0px;
+	padding: 0px;
+	line-height: 1;
+}
+
+input {
+	box-shadow: 0 5px 8px 0 rgba(255,255,255,0.2),0 7px 20px 0 rgba(255,255,255,0.17); 
+}

@@ -9,10 +9,10 @@ var start = [["gelb1", "gelb2", "gelb3", "gelb4"], ["gruen1", "gruen2", "gruen3"
 var hausfelder = [[29, 30, 31, 32], [9, 12, 15, 22], [44, 51, 54, 57], [34, 35, 36, 37]];
 var figuren = [["gelb1", "gelb2", "gelb3", "gelb4"], ["gruen1", "gruen2", "gruen3", "gruen4"], ["blau1", "blau2", "blau3", "blau4"], ["rot1", "rot2", "rot3", "rot4"]];
 var selection = null;
-var dice = 0;
+var dice = 6;
 var actionneed = false;
 var endgame = false;
-var player = 4;
+var player = 2;
 
 $(document).ready(function() {
 	getRightsize();
@@ -110,22 +110,22 @@ function selectfigur() {
 							actionneed = false;
 						} else {
 							if (child.parent().hasClass("hausfeld")) {
-								if ($('#feld' + fields[getFirstField()]).html() != null && $('#feld' + fields[getFirstField()]).html().includes("figur" + current)) {
-									$('#info').html("Du kannst deine eigenen Figuren nicht rausschmeißen, wähle eine andere Figur aus!");
-								} else {
-									var figurdiv = $('#' + figur).html();
-									$('#' + figur).html("");
-									var newfield = 'feld' + fields[getFirstField()];
-									if ($('#' + newfield).html() != "")
-										kickFigur(newfield);
-										$('#' + newfield).html(figurdiv);
-									figuren[figurarray[0]][figurarray[1]] = newfield;
-									clearSelection();
-										$('#info').html("Diese Figur ist nun auf deinem Startfeld, würfle nochmal!");
-									actionneed = false;
-								}
+								if (dice == 6)
+									if ($('#feld' + fields[getFirstField()]).html() != null && $('#feld' + fields[getFirstField()]).html().includes("figur" + current)) {
+										$('#info').html("Du kannst deine eigenen Figuren nicht rausschmeißen, wähle eine andere Figur aus!");
+									} else {
+										var figurdiv = $('#' + figur).html();
+										$('#' + figur).html("");
+										var newfield = 'feld' + fields[getFirstField()];
+										if ($('#' + newfield).html() != "")
+											kickFigur(newfield);
+											$('#' + newfield).html(figurdiv);
+										figuren[figurarray[0]][figurarray[1]] = newfield;
+										clearSelection();
+											$('#info').html("Diese Figur ist nun auf deinem Startfeld, würfle nochmal!");
+										actionneed = false;
+									}
 							} else {
-
 								if ($('#' + getNextField(figur, dice)).html() != null && $('#' + getNextField(figur, dice)).html().includes("figur" + current)) {
 									if (canDoSomething()) {
 										$('#info').html("Du kannst deine eigenen Figuren nicht rausschmeißen, wähle eine andere Figur aus!");
@@ -135,29 +135,34 @@ function selectfigur() {
 										currentamount = 0;
 										current = getNextPlayer();
 										$('#current').html("Der Spieler mit der Farbe <b>" + current.toUpperCase() + "</b> ist nun am Zug!");
-										$('#info').html("Weil du mit dieser Zahl nichts machen kannst, ist nun " + current.toUpperCase() + " am Zug!")
+										$('#info').html("Weil du mit dieser Zahl nichts machen kannst, ist nun " + current.toUpperCase() + " am Zug!");
 									}
 								} else {
-									var figurdiv = $('#' + figur).html();
-									$('#' + figur).html("");
-									var newfield = getNextField(figur, dice);
-									if ($('#' + newfield).html() != "")
-										kickFigur(newfield);
-									$('#' + newfield).html(figurdiv);
-									figuren[figurarray[0]][figurarray[1]] = newfield;
-									clearSelection();
-									actionneed = false;
-									checkWin();
-									if (!endgame)
-										if (dice == 6) 
-											$('#info').html("Da du eine Sechs gewürfet hast, darfst du nocheinmal würfeln!");
-										else {
-											currentamount = 0;
-											current = getNextPlayer();
-											$('#current').html("Der Spieler mit der Farbe <b>" + current.toUpperCase() + "</b> ist nun am Zug!");
-											$('#info').html("Weil ist nun der Zug abgeschlossen wurde ist nun " + current.toUpperCase() + " am Zug!")
-										}
-								}
+									if (getNextField(figur, dice) != null) {
+										var figurdiv = $('#' + figur).html();
+										$('#' + figur).html("");
+										var newfield = getNextField(figur, dice);
+										if ($('#' + newfield).html() != "")
+											kickFigur(newfield);
+										$('#' + newfield).html(figurdiv);
+										figuren[figurarray[0]][figurarray[1]] = newfield;
+										clearSelection();
+										actionneed = false;
+										checkWin();
+										if (!endgame)
+											if (dice == 6) 
+												$('#info').html("Da du eine Sechs gewürfet hast, darfst du nocheinmal würfeln!");
+											else {
+												currentamount = 0;
+												current = getNextPlayer();
+												$('#current').html("Der Spieler mit der Farbe <b>" + current.toUpperCase() + "</b> ist nun am Zug!");
+												$('#info').html("Weil ist nun der Zug abgeschlossen wurde ist nun " + current.toUpperCase() + " am Zug!")
+											}
+									}else {
+										$('#info').html("Du kannst nicht über das Ziel hinüberlaufen, wähle eine andere Figur aus!");
+									}
+								} 
+								
 							}
 
 						}
@@ -167,7 +172,7 @@ function selectfigur() {
 
 function rollNewDice() {
 	if (!actionneed && !endgame) {
-		dice = getRndZahl();
+		//dice = /*getRndZahl();*/6;
 		$('#dice').html("Es wurde eine <b>" + dice + "</b> Gewürfelt!");
 		if (needsASix()) 
 			if (dice == 6) {
@@ -490,7 +495,7 @@ function getNextField(currentfield, dice) {
 			if (i+dice <= felder.length)
 				return "feld" + felder[i + dice];
 			else
-				return "feld" + felder[felder.length-1];
+				return null;
 		}
 	}
 }

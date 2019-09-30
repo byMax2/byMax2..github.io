@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="interface.css">
+	<title>Dimensions</title>
+	<script src="main.js"></script>
+</head>
+
+<body>
+
+<div class="wrapper">
+	<div class="innerwrapper">
+		<div class="titlebar">Dimensions</div>
+		<div class="matterbar"><span id="matter_name"></span>: <span id="matter_owned"></span></div>
+		<div class="matterpsbar">Materie pro Sekunde: <span id="matter_ps"></span></div>
+		<div class="wrapper">
+			<div class="buildings_side">
+				Dimensionen
+					<div class="buildings_scroll">
+						
+						<div style="font-weight: bolder;text-shadow: 1px 1px black;" class="dimension" id="dim0">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_0"></span>
+								</div>
+								<div class="top_right">
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_0"></span>
+							</div>
+							<div class="bottom_row">
+								<button style="font-size: 14px;" onclick="clickDimZero()" class="bottom_left">
+									<span id="currentclickbonus"></span>
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_0"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #c5d9ff; text-shadow: 1px 1px black;" class="dimension" id="dim1">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_1"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_1"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_1"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('0')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_1"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #c5dfff; text-shadow: 1px 1px black;" class="dimension" id="dim2">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_2"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_2"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_2"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('1')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_2"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #c5eaff; text-shadow: 1px 1px black;" class="dimension" id="dim3">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_3"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_3"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_3"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('2')"  class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_3"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #c5f7ff; text-shadow: 1px 1px black;" class="dimension" id="dim4">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_4"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_4"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_4"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('3')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_4"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #c5fff0; text-shadow: 1px 1px black;" class="dimension" id="dim5">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_5"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_5"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_5"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('4')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_5"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #c5ffc8; text-shadow: 1px 1px black;" class="dimension" id="dim6">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_6"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_6"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_6"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('5')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_6"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #eaffc5; text-shadow: 1px 1px black;" class="dimension" id="dim7">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_7"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_7"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_7"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('6')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_7"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #fffec5; text-shadow: 1px 1px black;" class="dimension" id="dim8">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_8"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_8"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_8"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('7')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_8"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #ffe6c5; text-shadow: 1px 1px black;" class="dimension" id="dim9">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_9"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_9"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_9"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('8')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_9"></span>
+								</div>
+							</div>
+						</div>
+						
+						
+						<div style="color: #ffc5c5; text-shadow: 1px 1px black;" class="dimension" id="dim10">
+						<div class="spacer"></div>
+							<div class="title_top_row">
+								<div class="top_left">
+								<span id="name_building_10"></span>
+								</div>
+								<div class="top_right">
+								<span id="amount_building_10"></span>
+								</div>
+							</div>
+							<div class="mid_row">
+								<span id="desc_building_10"></span>
+							</div>
+							<div class="bottom_row">
+								<button onclick="buyBuilding('9')" class="bottom_left">
+									Kaufen
+								</button>
+								<div class="bottom_right">
+									<span id="cost_building_10"></span>
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			<div class="other_side">
+				Anderes
+				<div class="tab">
+					<button class="tablinks" onclick="openTab(event, 'Upgrades')">Upgrades</button>
+					<button id="sreset_tab_button"class="tablinks" onclick="openTab(event, 'SoftReset')">Soft Reset</button>
+					<button id="theorie_tab_button" class="tablinks" onclick="openTab(event, 'Theories')">Theorien</button>
+					<button id="options_tab_button" class="tablinks" style="float: right" onclick="openTab(event, 'Options')">Einstellungen</button>
+				</div>
+				<div id="Upgrades" class="tabcontent">
+					<h1 class="toptabtext" style="color: white;text-shadow: 1px 1px #000000;">Upgrades</h1>
+					<div id="upgrades_scroll">
+					
+						<div class="upgrade">
+						<div class="spacer"></div>
+							<div class="upgrades_leftside">
+								<div class="upgrade_textbox">
+								<span id="upgrade_1_desc"></span><br>
+								Level: <span id="upgrade_1_purchased"></span> | Preiserhöhung: <span id="upgrade_1_incr"></span>x
+								</div>
+							</div>
+							<div class="upgrades_rightside">
+								<button class="upgrade_button" onclick="buyUpgrade('1')">
+								Kaufen<br><span id="upgrade_1_cost"></span> Materie
+							</button>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div id="SoftReset" class="tabcontent">
+					<h1 class="toptabtext">Soft Reset</h1>
+					<p class="toptabtext" style="color: green;">Dimensionswechsel</p>
+					<p>Benötigt: <span id="shift_dims_required">20</span> deiner Höchsten Dimension<br>Belohnung: Eine neue Dimension<br>Du fängst wieder bei Dimension 1 an</p>
+					<button id="sreset_dimShift" class="sreset_button" onclick="dimShift()" style="border: none; background-color: #0a610e; color: white;">Wechsel</button>
+				
+					<br><br><br>
+					<p class="toptabtext" style="color: red;">Dimensionsboost</p>
+					<p>Benötigt: <span id="boost_dims_required">20</span> der Achten Dimension<br>Belohnung: Produktionsboost, <span id="dmatter_onboost">0</span> Dunkle Materie<br>Du fängst wieder bei Dimension 1 an</p>
+					<button id="sreset_dimBoost" class="sreset_button" onclick="dimBoost()" style="border: none; background-color: #610a0a; color: white;">Boost</button>
+				</div>
+				
+				<div id="Options" class="tabcontent">
+					<h1 class="toptabtext">Einstellungen</h1>
+					<div class="options">
+					
+						<div style="height: 50%;"class="option">
+							<div style="font-size: 20px; color: white; background-color: #202020; text-decoration: underline; height: 100%; width: 25%; float: left;">
+								<button onclick="saveToBrowser()" style="float: left; height: 50%; width: 100%;background-color: black; border: 1px solid white;" class="bottom_left">Speichern</button>
+								<button onclick="loadFromBrowser()"style="float: left; height: 50%; width: 100%;background-color: black; border: 1px solid white;" class="bottom_left">Laden</button>
+							</div>
+							<div style="font-size: 20px; color: white; background-color: #202020; text-decoration: underline; height: 100%; width: 60%; float: left;">
+								
+							</div>
+						</div>
+						<div class="option">
+							<div style="font-size: 20px; color: white; background-color: #202020; text-decoration: underline; height: 100%; width: 40%; float: left;">
+							
+							</div>
+							<div style="font-size: 20px; color: white; background-color: #202020; text-decoration: underline; height: 100%; width: 60%; float: left;">
+							
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+				<div id="Theories" class="tabcontent">
+					<h1 class="toptabtext" style="color: teal;text-shadow: 1px 1px #000000;">Theorien</h1>
+					<div class="dmatterbar"><span id="dmatter_name">Dunkle Materie</span>: <span id="dmatter_owned">0</span></div>
+					<div id="theories_scroll">
+					
+						<div class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_1_desc"></span><br>
+								Level: <span id="theorie_1_purchased"></span> | Preiserhöhung: <span id="theorie_1_incr"></span>x
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button class="theorie_button" onclick="buyTheorie('1')">
+								Lernen<br><span id="theorie_1_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+						<div class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_2_desc"></span><br>
+								Level: <span id="theorie_2_purchased"></span> | Preiserhöhung: <span id="theorie_2_incr"></span>x
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button class="theorie_button" onclick="buyTheorie('2')">
+								Lernen<br><span id="theorie_2_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+						<div class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_3_desc"></span><br>
+								Level: <span id="theorie_3_purchased"></span> | Preiserhöhung: <span id="theorie_3_incr"></span>x
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button class="theorie_button" onclick="buyTheorie('3')">
+								Lernen<br><span id="theorie_3_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+						<div class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_4_desc"></span><br>
+								Level: <span id="theorie_4_purchased"></span> | Preiserhöhung: <span id="theorie_4_incr"></span>x
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button class="theorie_button" onclick="buyTheorie('4')">
+								Lernen<br><span id="theorie_4_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+						<div id ="theoriedim9" class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_5_desc"></span><br>
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button id="theorie_button_dim9unlock" class="theorie_button" onclick="buyTheorie('5')">
+								Lernen<br><span id="theorie_5_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+						<div id ="theoriedim10" class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_6_desc"></span><br>
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button id="theorie_button_dim10unlock" class="theorie_button" onclick="buyTheorie('6')">
+								Lernen<br><span id="theorie_6_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+						<div class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_7_desc"></span><br>
+								Level: <span id="theorie_7_purchased"></span> | Preiserhöhung: <span id="theorie_7_incr"></span>x
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button class="theorie_button" onclick="buyTheorie('7')">
+								Lernen<br><span id="theorie_7_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+						<div class="theorie">
+						<div class="spacer"></div>
+							<div class="theories_leftside">
+								<div class="theorie_textbox">
+								<span id="theorie_8_desc"></span><br>
+								Level: <span id="theorie_8_purchased"></span> | Preiserhöhung: <span id="theorie_8_incr"></span>x
+								</div>
+							</div>
+							<div class="theories_rightside">
+								<button class="theorie_button" onclick="buyTheorie('8')">
+								Lernen<br><span id="theorie_8_cost"></span> DM
+								</button>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

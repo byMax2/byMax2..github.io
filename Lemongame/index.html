@@ -1,451 +1,278 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Lemongame</title>
 	<link rel="stylesheet" type="text/css" href="interface.css">
 	<meta charset="utf-8">
-	<title>Lemongame alpha4.3</title>
-	<script type="text/javascript" src="main.js"></script>
 </head>
+<body>
 
-<body background="lemon.png">
-	<div class="wrapper">
-		<div class="top">
-			Lemongame alpha4.3
-		</div>
-		<div class="full">
-			<div class="left_bar_resources">
-				&nbsp;Resourcen:
-				<div class="dividerL">
-				</div>
-				<div class="resources_scroll">
-					<div class="dividerL">
-					</div>
-					<div class="resource">
-						<div class="resource_namespace">
-							&nbsp;Geld
-						</div>
-						<div class="resource_amntspace">
-							<span id="res_money">0</span> $&nbsp;
-						</div>
-					</div>
-					<div class="resource">
-						<div class="resource_namespace">
-							&nbsp;Zitronen
-						</div>
-						<div class="resource_amntspace">
-							<span id="res_lemons">0</span> ©&nbsp;
-						</div>
-					</div>
-					<div class="resource">
-						<div class="resource_namespace">
-							&nbsp;Zitronensaft
-						</div>
-						<div class="resource_amntspace">
-							<span id="res_lemonjuice">0</span> ml&nbsp;
-						</div>
-					</div>
-					<div class="resource">
-						<div class="resource_namespace">
-							&nbsp;Volt
-						</div>
-						<div class="resource_amntspace">
-							<span id="res_volt">0</span> V&nbsp;
-						</div>
-					</div>
-					<div class="resource">
-						<div class="resource_namespace">
-							&nbsp;Wissenschaft
-						</div>
-						<div class="resource_amntspace">
-							<span id="res_science">0</span> @&nbsp;
-						</div>
-					</div>
-					<div class="resource">
-						<div class="presource_namespace">
-							&nbsp;Limetten
-						</div>
-						<div class="presource_amntspace">
-							<span id="pres_limes">0</span> ♠&nbsp;
-						</div>
-					</div>
-				</div>
+<button id="settingsButton" onclick="togglePanel('settings')">Optionen</button>
+<button id="statsButton" onclick="togglePanel('stats')">Stats</button>
+
+<div class="title clearfix">
+	<div class="titlebar">
+		<h1 style="background-color: rgb(255,255,220); margin-bottom: 5px;">Lemongame</h1>
+	</div>
+	<div class="tabselect">
+		<button id="tablinkbuttonZitronen" class="tablinks tabactive" onclick="openTab(event, 'tabZitronen')">0 Zitronen</button>
+		<button id="tablinkbuttonEuro" class="tablinks" onclick="openTab(event, 'tabEuro')">0 Euro</button>
+		<button id="tablinkbuttonWissenschaft" class="tablinks" onclick="openTab(event, 'tabWissenschaft')">0 Wissenschaft</button>
+		<button id="tablinkbuttonLimetten" class="tablinks" onclick="openTab(event, 'tabLimetten')">0 Limetten</button>
+	</div>
+</div>
+
+<br>
+
+<div id="welcomescreen" style="text-align: center;">
+	<h1 style="background-color: rgb(255,255,160);">Willkommen</h1><br>
+	<p>Dein Name?</p>
+	<input id="nameinput" type="text" placeholder="Albert"></input><br>
+	<button onclick="startGame()">Anfangen</button>
+</div>
+
+<div id="stats" class="popuppanel">
+	<div class="fullwidth">
+		<div class="halfwidth floatLeft" style="height: auto;">
+			<div id="statsfield">
+				<p class="statstitle">Zitronenbäume</p>
+				<p class="statstext">Zitronenrate: 0.10 /s /Baum</p>
+				<br>
 			</div>
-			<div class="right_bar_buildings">
-				&nbsp;Produktion:
-				<div class="dividerL">
-				</div>
-				<div class="buildings_scroll">
-					<div class="dividerL">
-					</div>
-					<div class="building">
-						<div class="building_namespace">
-							Zitronenbaum
-						</div>
-						<div class="building_amntspace">
-							<span id="bld_lemontrees">0</span> / <span id="lemontrees_limit">50</span>
-						</div>
-						<div class="building_descspace">
-							Zitronenbäume produzieren Zitronen jede Sekunde.
-						</div>
-						<div class="building_effectspace">
-							+<span id="lemontrees_produce">1</span> Zitrone / s
-						</div>
-						<div class="building_bottomspace">
-							<div class="building_buttonspace">
-								<button onclick="buyTree()">Kaufen</button>
-							</div>
-							<div class="building_costspace">
-								<span id="cst_lemontrees">25</span> $&nbsp;
-							</div>
-						</div>
-					</div>
-					<div class="building">
-						<div class="building_namespace">
-							Zitronenpresse
-						</div>
-						<div class="building_amntspace">
-							<span id="bld_lemonsqueezers">0</span>
-						</div>
-						<div class="building_descspace">
-							Zitronenpressen quetschen Zitronen automatisiert aus.
-						</div>
-						<div class="building_effectspace">
-							-<span id="lemonjuice_amount">1</span> Zitronen / s, + <span id="lemonjuice_amount">1</span> ZSaft / s
-						</div>
-						<div class="building_bottomspace">
-							<div class="building_buttonspace">
-								<button onclick="buySqueezer()">Kaufen</button>
-							</div>
-							<div class="building_costspace">
-								<span id="cst_lemonsqueezers">30</span> $&nbsp;
-							</div>
-						</div>
-					</div>
-					<div class="building">
-						<div class="building_namespace">
-							Limonadenstand
-						</div>
-						<div class="building_amntspace">
-							<span id="bld_lemonstands">0</span>
-						</div>
-						<div class="building_descspace">
-							Limonadenstände benutzen Zitronensaft, um Limonade im Wert von 5$ zu verkaufen.
-						</div>
-						<div class="building_effectspace">
-							- 6 ZSaft / s, + <span id="lemonstands_money">5</span>$ / s
-						</div>
-						<div class="building_bottomspace">
-							<div class="building_buttonspace">
-								<button onclick="buyStand()">Kaufen</button>
-								<button id="togglestand" onclick="toggleStands()">An</button>
-							</div>
-							<div class="building_costspace">
-								<span id="cst_lemonstands">120</span> $&nbsp;
-							</div>
-						</div>
-					</div>
-					<div class="building">
-						<div class="building_namespace">
-							Säuregenerator
-						</div>
-						<div class="building_amntspace">
-							<span id="bld_agenerators">0</span>
-						</div>
-						<div class="building_descspace">
-							Säuregeneratoren benutzen Zitronensaft um Strom zu erzeugen.
-						</div>
-						<div class="building_effectspace">
-							- <span id="generatorjuice">13</span> ZSaft / s, + <span id="generatorspeed">1</span> Volt / s
-						</div>
-						<div class="building_bottomspace">
-							<div class="building_buttonspace">
-								<button onclick="buyGenerator()">Kaufen</button>
-								<button id="togglegen" onclick="toggleGenerator()">An</button>
-							</div>
-							<div class="building_costspace">
-								<span id="cst_agenerators">1200</span> $&nbsp;
-							</div>
-						</div>
-					</div>
-					<div class="building">
-						<div class="building_namespace">
-							Forschungszentrum
-						</div>
-						<div class="building_amntspace">
-							<span id="bld_sciencecenters">0</span>
-						</div>
-						<div class="building_descspace">
-							In Forschungszentren wird Strom verbraucht um zu forschen (Du bekommst Geld dafür).
-						</div>
-						<div class="building_effectspace">
-							- <span id="sciencevolt">3</span> Volt / s, + <span id="sciencespeed">1</span> Wissenschaft / s, + 18 $ / s
-						</div>
-						<div class="building_bottomspace">
-							<div class="building_buttonspace">
-								<button onclick="buyScienceCenter()">Kaufen</button>
-								<button id="togglesci" onclick="toggleScience()">An</button>
-							</div>
-							<div class="building_costspace">
-								<span id="cst_sciencecenters">5500</span> $&nbsp;
-							</div>
-						</div>
-					</div>
-				</div>
+			<div id="statspress">
+				<p class="statstitle">Zitronenpresse</p>
+				<p class="statstext">Benötigt: 1 Zitrone</p>
+				<p class="statstext">Gewinn: 1 Zitronensaft</p>
+				<p class="statstext">Zeit zum pressen: 900 Ticks</p>
+				<p class="statstext">per Hand pressen: -5 Ticks</p>
+				<br>
 			</div>
 		</div>
-		<div class="full">
-			<br>
-			<div class="left_bar_production">
-				&nbsp;Eigene Produktion:
-				<div class="dividerL">
-				</div>
-				<div class="production_scroll">
-					<div class="dividerL">
-					</div>
-					<div class="prod_boxl">
-						<div class="prod_namespace">
-							&nbsp;Zitrone sammeln
-						</div>
-						<div class="prod_descspace">
-							&nbsp;Du sammelst Zitronen.
-						</div>
-						<div class="prod_effectspace">
-							&nbsp;+<span id="lemontrees_produce">1</span> © / klick
-						</div>
-						<div class="prod_buttonspace">
-						&nbsp;<button onclick="getLemon()">Sammeln</button>
-						</div>
-					</div>
-					<div class="prod_boxr">
-						<div class="prod_namespace">
-							&nbsp;Zitrone quetschen
-						</div>
-						<br>
-						<div class="prod_descspace">
-							&nbsp;Du quetschst Zitronen.
-						</div>
-						<div class="prod_effectspace">
-							&nbsp;+1 ZSaft / klick
-						</div>
-						<div class="prod_buttonspace">
-						&nbsp;<button onclick="squeezeLemon()">Quetschen</button>
-						</div>
-					</div>
-					<div class="prod_boxl">
-						<div class="prod_namespace">
-							&nbsp;Limonade verkaufen
-						</div>
-						<div class="prod_descspace">
-							&nbsp;Du verkaufst eine Limonade.
-						</div>
-						<div class="prod_effectspace">
-							&nbsp;-5 ZSaft, +<span id="lemonade_money">3</span>$ / klick
-						</div>
-						<div class="prod_buttonspace">
-						&nbsp;<button onclick="sellLemonade()">Verkaufen</button>
-						</div>
-					</div>
-					<div class="prod_boxr">
-						<div class="prod_namespace">
-							&nbsp;Golem erschaffen
-						</div>
-						<br>
-						<div class="prod_descspace">
-							&nbsp;Du stellst einen lebendigen Golem her.
-							</div>
-						<div class="prod_effectspace">
-							&nbsp;-<span id="cst_golem_juice">10000</span> ml, -<span id="cst_golem_volt">2500</span> V, -<span id="cst_golem_science">750</span> @, -<span id="cst_golem_money">20000</span> $ / klick
-						</div>
-						<div class="prod_buttonspace">
-						&nbsp;<button onclick="makeGolem()">Erschaffen</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="right_bar_combat">
-				&nbsp;Erkundung:
-				<div class="dividerL">
-				</div>
-				<div class="combat_scroll">
-					<div class="dividerL">
-					</div>
-					<div class="golemInfo">
-						&nbsp;Deine Golems:
-						<br><br>
-						&nbsp;Golems: <span id="golems_owned">0</span>
-						<br>
-						&nbsp;Golem HP: <span id="golem_hpcur">0</span> / <span id="golem_hpmax">30</span>
-						<br>
-						&nbsp;Golem ATK: <span id="golem_atkcur">0</span>
-						<br><br><br><br><br>
-						&nbsp;Tote Golems: <span id="golems_died">0</span>
-						<br>
-						&nbsp;Tote Gegner: <span id="enemies_died">0</span>
-					</div>
-					<div class="exploration">
-						Gebiet <span id="exploration_stage">1</span> | Abschnitt <span id="explorationpart_cur">1</span> / 100
-						<div class="explorationupdatetext">
-							<span id="explorationupdate">Erschaffe einen Golem!</span>
-						</div>
-						<br><br><br>
-							Gegnerisches Leben: <span id="enemyhp">35</span><br>
-							Gegnerischer Angriff: <span id="enemyatk">1</span>
-					</div>
-					<div class="golemOdds">
-						&nbsp;Jeder Kampf:
-						<br><br>
-						&nbsp;Schlecht: 5%
-						<br>
-						&nbsp;Mittel: 50%
-						<br>
-						&nbsp;Gut: 25%
-						<br>
-						&nbsp;Sehr Gut: 18%
-						<br>
-						&nbsp;Exzellent: 2%
-						<br><br>
-						&nbsp;Ab Gebiet 20<br>&nbsp;findet man<br>&nbsp;Limetten.
-					</div>
-				</div>
+		<div class="halfwidth floatRight" style="height: auto;">
+			<div id="statsstand">
+				<p class="statstitle">Limonadenstand</p>
+				<p class="statstext">Verkauft maximal: 3 Limonaden auf einmal</p>
+				<p class="statstext">Benötigt: 0.2 Zitronen /Limonade</p>
+				<p class="statstext">Gewinn: 2 Euro /Limonade</p>
+				<p class="statstext">Zeit zwischen Verkäufen: 120 Ticks</p>
+				<br>
 			</div>
 		</div>
-		<br>
-		<div class="full">
-			<br>
-			<div class="dividerL">
+	</div>
+</div>
+
+<div id="settings" class="popuppanel">
+
+</div>
+
+<div class="tabcontent clearfix" id="tabZitronen">
+	<div id="lemontreefield">
+		<h1>Feld mit Zitronenbäumen</h1>
+		<h2 style="text-align: center">Zitronenbäume auf dem Feld</h2>
+		<div class="progresshull"><div class="progressbar" id="lemontreebar"></div></div><br><h3 id="lemontreebartext">0 / 20</h3>
+		<div class="fullwidth">
+			<div class="halfwidth floatLeft">
+				<button onclick="purchaseThing('lemontree')" style="width: calc(100% - 1px)">Zitronenbaum Kaufen</button><br>
+				<p id="lemontreebuydescription" class="floatLeft">Kaufe einen Zitronenbaum für 25 Euro. Jeder Baum braucht 10 Sekunden für eine Zitrone</p>
 			</div>
-			<div class="bottom_bar_upgrades">
-				&nbsp;Upgrades:
-				<div class="dividerL">
-				</div>
-				<div class="upgrades_scroll">
-					<div class="dividerL">
-					</div>
-					<div class="upgrade">
-						<div class="upgr_namespace">
-							Mehr Zitronen
-						</div>
-						<div class="upgr_descspace">
-							Verdoppelt die Zitronen die du per Hand und pro Baum bekommst.
-						</div>
-						<div class="upgr_buttonspace">
-							<button onclick="upgradeLemonamount()">Kaufen für <span id="cst_lemonamountupgr">450</span> @</button>
-						</div>
-					</div>
-					<div class="upgrade">
-						<div class="upgr_namespace">
-							Mehr Saft
-						</div>
-						<div class="upgr_descspace">
-							Deine Zitronenpressen sind doppelt so pressend.
-						</div>
-						<div class="upgr_buttonspace">
-							<button onclick="upgradeJuiceamount()">Kaufen für <span id="cst_juiceamountupgr">550</span> @</button>
-						</div>
-					</div>
-					<div class="upgrade">
-						<div class="upgr_namespace">
-							Mehr Geld
-						</div>
-						<div class="upgr_descspace">
-							Deine Limonade ist jetzt doppelt so viel wert!
-						</div>
-						<div class="upgr_buttonspace">
-							<button onclick="upgradeStandamount()">Kaufen für <span id="cst_standamountupgr">300</span> @</button>
-						</div>
-					</div>
-					<div class="upgrade">
-						<div class="upgr_namespace">
-							Baumlimit erhöhen
-						</div>
-						<div class="upgr_descspace">
-							Verdoppelt das Baumlimit.
-						</div>
-						<div class="upgr_buttonspace">
-							<button onclick="upgradeTreelimit()">Kaufen für <span id="cst_treelimitupgr">100</span> @</button>
-						</div>
-					</div>
-					<div class="upgrade">
-						<div class="upgr_namespace">
-							Schnellere Generatoren
-						</div>
-						<div class="upgr_descspace">
-							Verdoppelt die Produktion von Volt.
-						</div>
-						<div class="upgr_buttonspace">
-							<button onclick="upgradeGeneratorspeed()">Kaufen für <span id="cst_generatorspeedupgr">700</span> @</button>
-						</div>
-					</div>
-					<div class="upgrade">
-						<div class="upgr_namespace">
-							Schnelleres Forschen
-						</div>
-						<div class="upgr_descspace">
-							Verdoppelt die Effektivität des Forschungszentrums.
-						</div>
-						<div class="upgr_buttonspace">
-							<button onclick="upgradeSciencespeed()">Kaufen für <span id="cst_sciencespeedupgr">350</span> @</button>
-						</div>
-					</div>
-				</div>
+			<div class="halfwidth floatRight">
+				
 			</div>
 		</div>
-		<div class="full">
-			<br>
-			<div class="dividerL">
+		<h2 style="text-align: center">Zitronen an den Bäumen</h2>
+		<div class="progresshull"><div class="progressbar" id="lemonbar"></div></div><br><h3 id="lemonbartext">0 / 0</h3>
+		<div class="fullwidth">
+			<div class="halfwidth floatLeft">
+				<button onclick="doThing('getLemon')" style="width: calc(100% - 1px)">Zitrone einsammeln</button><br>
+				<p id="lemontreegetlemondescription" class="floatLeft">Pflücke eine der Zitronen</p>
 			</div>
-			<div class="bottom_bar_prestige">
-				&nbsp;Prestige:
-				<div class="dividerL">
+			<div class="halfwidth floatRight">
+				
+			</div>
+		</div>
+	</div>
+	<div id="lemonstand">
+		<h1>Limonadenstand</h1>
+		<h2 style="text-align: center">Zitronen auf Lager</h2>
+		<div class="progresshull"><div class="progressbar" id="lemonstandlemonbar"></div></div><br><h3 id="lemonstandlemonbartext">0 / 0</h3>
+		<div class="fullwidth">
+			<div class="halfwidth floatLeft">
+				<button onclick="doThing('lemonToStand')" style="width: calc(100% - 1px)">Zitrone geben</button><br>
+				<p id="lemonstandgivelemondescription" class="floatLeft">Fülle den Stand mit einer Zitrone</p>
+			</div>
+			<div class="halfwidth floatRight">
+				
+			</div>
+		</div>
+		<h2 style="text-align: center" id="lemonstandleveltext">Limonadenlevel 1</h2>
+		<div class="progresshull"><div class="progressbar" id="lemonstandbar"></div></div><br><h3 id="lemonstandbartext">0 / 0</h3>
+		<div class="fullwidth">
+			<div class="halfwidth floatLeft">
+				
+			</div>
+			<div class="halfwidth floatRight">
+				
+			</div>
+		</div>
+	</div>
+	<div id="lemonpress">
+		<h1>Zitronenpresse</h1>
+		<h2 style="text-align: center">Zitronen auf Lager</h2>
+		<div class="progresshull"><div class="progressbar" id="lemonpresslemonbar"></div></div><br>
+		<div class="progresshull"><div class="progressbar" id="lemonpressprogressbar"></div></div><br><h3 id="lemonpresslemonbartext">0 / 0</h3>
+		<div class="fullwidth">
+			<div class="halfwidth floatLeft">
+				<button onclick="doThing('lemonToPress')" style="width: calc(100% - 1px)">Zitrone geben</button><br>
+				<p id="lemonpressgivelemondescription" class="floatLeft">Fülle die Presse mit einer Zitrone</p>
+			</div>
+			<div class="halfwidth floatRight">
+				<button onclick="doThing('press')" style="width: calc(100% - 1px)">Per Hand pressen</button><br>
+				<p id="lemonpressspeedbuydescription" class="floatLeft">Selbsterklärend</p>
+			</div>
+		</div>
+		<h2 style="text-align: center" id="lemonpressleveltext">Zitronensaft</h2>
+		<div class="progresshull"><div class="progressbar" id="lemonpressjuicebar"></div></div><br><h3 id="lemonpressjuicebartext">0 / 0</h3>
+		<div class="fullwidth">
+			<div class="halfwidth floatLeft">
+				<button onclick="doThing('getJuice')" style="width: calc(100% - 1px)">Zitronensaft abfüllen</button><br>
+				<p id="lemonpressgetlemonjuicedescription" class="floatLeft"></p>
+			</div>
+			<div class="halfwidth floatRight">
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="tabcontent" id="tabEuro">
+	<div class="fullwidth">
+		<div class="halfwidth floatLeft">
+			<div class="halfwidth floatLeft">
+				<div id="upgradefieldlimit" class="upgradetab">
+					<div class="upgradebase">
+						<p id="upgradefieldlimiteffect" class="floatLeft workertext" style="font-size: 1vw;">Zitronenfeld</p>
+					</div>
+					<div class="upgradedescription">
+						<h2 id="upgradefieldlimitname" style="text-align: center">Baumlimit 1</h2>
+						<p id="upgradefieldlimitdescription" class="floatLeft workertext">Schafft Platz für 20 mehr Bäume</p>
+					</div>
+					<div class="upgradebutton">
+						<button id="upgradefieldlimitbutton" onclick="purchaseUpgrade('lemonfield', 'limit')" class="upgradebutton" style="width: calc(100% - 4px);">Upgrade kaufen</button><br>
+					</div>
+					<div class="upgradecost">
+						<p id="upgradefieldlimitcost" class="floatLeft workertext">100 Euro</p><br>
+					</div>
 				</div>
-				<div class="prestige_scroll">
-					<div class="dividerL">
+				<div id="upgradestandlimit" class="upgradetab">
+					<div class="upgradebase">
+						<p id="upgradestandlimiteffect" class="floatLeft workertext" style="font-size: 1vw;">Limonadenstand</p>
 					</div>
-					<div class="pupgrade">
-						<div class="pupgr_namespace">
-							Extra Zitronen
-						</div>
-						<div class="pupgr_descspace">
-							Bäume produzieren +1 Zitrone jede Sekunde.
-						</div>
-						<div class="pupgr_buttonspace">
-							<button onclick="pupgrade()">Kaufen für <span id="cst_treelimitupgr">5</span> ♠</button>
-						</div>
+					<div class="upgradedescription">
+						<h2 id="upgradestandlimitname" style="text-align: center">Lagerlimit 1</h2>
+						<p id="upgradestandlimitdescription" class="floatLeft workertext">Dein Zitronenstand kann doppelt soviele Zitronen lagern</p>
 					</div>
-					<div class="pupgrade">
-						<div class="pupgr_namespace">
-							Passiv-Sammeln
-						</div>
-						<div class="pupgr_descspace">
-							Du produzierst +1 Zitrone jede Sekunde.
-						</div>
-						<div class="pupgr_buttonspace">
-							<button onclick="pupgrade()">Kaufen für <span id="cst_treelimitupgr">5</span> ♠</button>
-						</div>
+					<div class="upgradebutton">
+						<button id="upgradestandlimitbutton" onclick="purchaseUpgrade('lemonstand', 'limit')" class="upgradebutton" style="width: calc(100% - 4px);">Upgrade kaufen</button><br>
 					</div>
-					<div class="pupgrade">
-						<div class="pupgr_namespace">
-							Passiv-Quetschen
-						</div>
-						<div class="pupgr_descspace">
-							Du quetschst +1 Zitrone jede Sekunde aus.
-						</div>
-						<div class="pupgr_buttonspace">
-							<button onclick="pupgrade()">Kaufen für <span id="cst_treelimitupgr">5</span> ♠</button>
-						</div>
+					<div class="upgradecost">
+						<p id="upgradestandlimitcost" class="floatLeft workertext">100 Euro</p><br>
 					</div>
+				</div>
+				<div id="upgradestanddelay" class="upgradetab">
+					<div class="upgradebase">
+						<p id="upgradestanddelayeffect" class="floatLeft workertext" style="font-size: 1vw;">Limonadenstand</p>
+					</div>
+					<div class="upgradedescription">
+						<h2 id="upgradestanddelayname" style="text-align: center">Mehr Kunden</h2>
+						<p id="upgradestanddelaydescription" class="floatLeft workertext">Dein Zitronenstand verkauft jetzt schneller Limonade</p>
+					</div>
+					<div class="upgradebutton">
+						<button id="upgradestanddelaybutton" onclick="purchaseUpgrade('lemonstand', 'delay')" class="upgradebutton" style="width: calc(100% - 4px);">Upgrade kaufen</button><br>
+					</div>
+					<div class="upgradecost">
+						<p id="upgradestanddelaycost" class="floatLeft workertext">100 Euro</p><br>
+					</div>
+				</div>
+				<div id="upgradepressspeed" class="upgradetab">
+					<div class="upgradebase">
+						<p id="upgradepressspeedeffect" class="floatLeft workertext" style="font-size: 1vw;">Zitronenpresse</p>
+					</div>
+					<div class="upgradedescription">
+						<h2 id="upgradepressspeedname" style="text-align: center">Schnellere Pressen</h2>
+						<p id="upgradepressspeeddescription" class="floatLeft workertext">Deine Presse produziert schneller Zitronensaft</p>
+					</div>
+					<div class="upgradebutton">
+						<button id="upgradepressspeedbutton" onclick="purchaseUpgrade('lemonpress', 'speed')" class="upgradebutton" style="width: calc(100% - 4px);">Upgrade kaufen</button><br>
+					</div>
+					<div class="upgradecost">
+						<p id="upgradepressspeedcost" class="floatLeft workertext">100 Euro</p><br>
+					</div>
+				</div>
+			</div>
+			<div class="halfwidth floatRight">
+				
+			</div>
+		</div>
+		<div id="workers" class="halfwidth floatRight">
+			<h1>Arbeiter</h1>
+			<div class="workertab">
+				<div class="workereffect">
+					<p id="workerfieldeffect" class="floatLeft workertext">Automatisches Zitronenpflücken + 1</p>
+				</div>
+				<div class="workerdescription">
+					<h2 style="text-align: center">Feldarbeiter</h2>
+					<p id="workerfielddescription" class="floatLeft workertext">Jeder Arbeiter pflückt eine Zitrone jede Sekunde</p>
+				</div>
+				<div class="workerbutton">
+					<button id="workerfieldhire" onclick="purchaseWorker('lemonfield')" class="workerhirebutton" style="border-top: none !important;">Arbeiter einstellen</button><br>
+					<p id="workerfieldamount" class="floatLeft" style="font-size: 1.5vw">0</p>
+					<button id="workerfieldfire" onclick="fireWorker('lemonfield')" class="workerfirebutton">Arbeiter feuern</button><br>
+				</div>
+			</div>
+			<div class="workertab">
+				<div class="workereffect">
+					<p id="workerstandeffect" class="floatLeft workertext">Menge die Verkauft werden kann + 1</p>	
+				</div>
+				<div class="workerdescription">
+					<h2 style="text-align: center">Verkäufer</h2>
+					<p id="workerstanddescription" class="floatLeft workertext">Jeder Arbeiter erhöht die Anzahl der Limonaden die verkauft werden kann um 1</p>	
+				</div>
+				<div class="workerbutton">
+					<button id="workerstandhire" onclick="purchaseWorker('lemonstand')" class="workerhirebutton" style="border-top: none !important;">Arbeiter einstellen</button><br>
+					<p id="workerfieldamount" class="floatLeft" style="font-size: 1.5vw">0</p>
+					<button id="workerstandfire" onclick="fireWorker('lemonstand')" class="workerfirebutton">Arbeiter feuern</button><br>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-<script type="text/javascript" src="index-Dateien/main.js"></script>
-<footer style="text-align: center;">
-	(c) Nicolai Krechel, 2018<br>
-	Special Thanks to:<br>
-	Schmidt, Tristan<br>
-	Lude, Maximilian
-</footer>
+<div class="tabcontent" id="tabWissenschaft">
+	
+</div>
 
-</body></html>
+<div class="tabcontent" id="tabLimetten">
+	
+</div>
+
+</body>
+</html>
+<script type="text/javascript" src="main.js"></script>
+<script>
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" tabactive", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " tabactive";
+	
+	document.getElementById("settings").style.display = "none";
+	document.getElementById("stats").style.display = "none";
+}
+</script>

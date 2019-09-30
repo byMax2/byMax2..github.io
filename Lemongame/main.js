@@ -1,596 +1,602 @@
-var res_money = 0;
-var res_lemons = 0;
-var res_lemonjuice = 0;
-var res_volt = 0;
-var res_science = 0;
-
-var pres_limes = 0;
-
-var damage_taken = 0;
-var damage_dealt = 0;
-
-var exploration_stage = 1;
-var explorationpart_cur = 1;
-var golems_owned = 0;
-var golems_died = 0;
-
-var golem_hpmax = 50;
-var golem_hpcur = 0;
-
-var golem_atkcur = 0;
-
-var enemy_hpcur = 35;
-
-var enemy_atkcur = 1;
-
-var enemy_died = 0;
-
-var cst_golem_juice = 6666;
-var cst_golem_volt = 666;
-var cst_golem_science = 666;
-var cst_golem_money = 20000;
-	
-var bld_lemontrees = 0;
-var cst_lemontrees = 25;
-var incr_lemontrees = 1.085;
-	
-var bld_lemonsqueezers = 0;
-var cst_lemonsqueezers = 30;
-var incr_lemonsqueezers = 1.105;
-	
-var bld_lemonstands = 0;
-var cst_lemonstands = 120;
-var incr_lemonstands = 1.16;
-	
-var bld_agenerators = 0;
-var cst_agenerators = 1200;
-var incr_agenerators = 1.26;
-	
-var bld_sciencecenters = 0;
-var cst_sciencecenters = 5500;
-var incr_sciencecenters = 1.36;
-	
-var lemonstands_money = 5;
-var lemonade_money = 3;
-var lemontrees_produce = 1;
-var lemontrees_limit = 50;
-var lemonjuice_amount = 1;
-var generatorspeed = 1;
-var generatorjuice = 13;
-var sciencespeed = 1;
-var sciencevolt = 3;
-
-var cst_lemonamountupgr = 450;
-var cst_juiceamountupgr = 550;
-var cst_standamountupgr = 300;
-var cst_treelimitupgr = 100;
-var cst_generatorspeedupgr = 700;
-var cst_sciencespeedupgr = 350;
-	
-var togglesci = 0;
-var togglegen = 0;
-var togglestand = 0;
-
-function prestige(){
-	togglesci = 0;
-	togglegen = 0;
-	togglestand = 0;
-	
-	cst_sciencespeedupgr = 350;
-	cst_generatorspeedupgr = 700;
-	cst_treelimitupgr = 100;
-	cst_standamountupgr = 300;
-	cst_juiceamountupgr = 550;
-	cst_lemonamountupgr = 450;
-	
-	sciencevolt = 3;
-	sciencespeed = 1;
-	generatorjuice = 13;
-	generatorspeed = 1;
-	lemonjuice_amount = 1;
-	lemontrees_limit = 50;
-	lemontrees_produce = 1;
-	lemonade_money = 3;
-	lemonstands_money = 5;
-	
-	cst_golem_juice = 7500;
-	cst_golem_volt = 750;
-	cst_golem_science = 750;
-	cst_golem_money = 20000;
-	
-	bld_lemontrees = 0;
-	cst_lemontrees = 25;
-	incr_lemontrees = 1.085;
-	
-	bld_lemonsqueezers = 0;
-	cst_lemonsqueezers = 30;
-	incr_lemonsqueezers = 1.105;
-	
-	bld_lemonstands = 0;
-	cst_lemonstands = 120;
-	incr_lemonstands = 1.16;
-	
-	bld_agenerators = 0;
-	cst_agenerators = 1200;
-	incr_agenerators = 1.26;
-	
-	bld_sciencecenters = 0;
-	cst_sciencecenters = 5500;
-	incr_sciencecenters = 1.36;
-	
-	exploration_stage = 1;
-	explorationpart_cur = 1;
-	golems_owned = 0;
-	golems_died = 0;
-
-	golem_hpmax = 50;
-	golem_hpcur = 0;
-
-	golem_atkcur = 0;
-
-	enemy_hpcur = 35;
-
-	enemy_atkcur = 1;
-
-	enemy_died = 0;
+let lemongame = {
+	tps: 20,
+	running: true,
+	tabs: [0, 0, 0, 0], // Tab 1 - 4
+	unlocks: [0, 0, 0], // Lemontreefield, Lemonadestand, Lemonpress
+	resources: [],
+	specials: [],
+	buildings: [],
+	upgrades: [],
 }
-function getLemon()
-{
-	res_lemons = res_lemons + lemontrees_produce;
-	
-   	document.getElementById("res_lemons").innerHTML = res_lemons;
-};
 
-function squeezeLemon()
-{
-	if(res_lemons >= 1) 
-	{	
-		res_lemons = res_lemons - 1;
-		res_lemonjuice = res_lemonjuice + lemonjuice_amount;
-		
-		document.getElementById("res_lemons").innerHTML = res_lemons;
-		document.getElementById("res_lemonjuice").innerHTML = res_lemonjuice;
+class Lemonfield {
+	constructor (treeamount, lemonamount, treelimit, lemonlimit, multiplier, cost, upgradecost, spaceperupgrade) {
+		this.treeamount = treeamount || 0;
+		this.lemonamount = lemonamount || 0;
+		this.treelimit = treelimit || 20;
+		this.lemonlimit = lemonlimit || 0;
+		this.multiplier = multiplier || 1;
+		this.cost = cost || 25;
+		this.upgradecost = upgradecost || 200;
+		this.spaceperupgrade = 20 || 20;
 	}
-};
-
-function sellLemonade()
-{
-if (res_lemonjuice >= 5) 
-	{
-	res_money = res_money + lemonade_money;
-	res_lemonjuice = res_lemonjuice - 5;
-
-	document.getElementById("res_money").innerHTML = res_money;
-	document.getElementById("res_lemonjuice").innerHTML = res_lemonjuice;
-	};
-};
-
-function makeGolem()
-{
-if (res_lemonjuice >= cst_golem_juice && res_volt >= cst_golem_volt && res_science >= cst_golem_science && res_money >= cst_golem_money) 
-	{
-	res_lemonjuice = res_lemonjuice - cst_golem_juice;
-	res_volt = res_volt - cst_golem_volt;
-	res_science = res_science - cst_golem_science;
-	res_money = res_money - cst_golem_money;
 	
-	golems_owned = golems_owned + 1;
-	
-	golem_hpcur = golem_hpcur + 50;
-	golem_hpmax = golems_owned * 50;
-	golem_atkcur = golems_owned * 5;
-	
-	document.getElementById("res_lemonjuice").innerHTML = res_lemonjuice;
-	document.getElementById("res_volt").innerHTML = res_volt;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("golems_owned").innerHTML = golems_owned;
-	document.getElementById("golem_hpcur").innerHTML = golem_hpcur;
-	document.getElementById("golem_hpmax").innerHTML = golem_hpmax;
-	document.getElementById("golem_atkcur").innerHTML = golem_atkcur;
-	};
-};
+	unlock() {
+		lemongame.unlocks[0] = 1;
+		updateWindows();
+	}
 
-function buyTree(){
-if (res_money >= cst_lemontrees && bld_lemontrees < lemontrees_limit) 
-	{
-	res_money = res_money - cst_lemontrees;
-	bld_lemontrees = bld_lemontrees + 1;
-	cst_lemontrees = Math.floor(cst_lemontrees * incr_lemontrees);
-	};
-	document.getElementById("res_money").innerHTML = res_money;
-	document.getElementById("bld_lemontrees").innerHTML = bld_lemontrees;
-	document.getElementById("cst_lemontrees").innerHTML = cst_lemontrees;
-};
-
-function buySqueezer()
-{
-if (res_money >= cst_lemonsqueezers) 
-	{
-	res_money = res_money - cst_lemonsqueezers;
-	bld_lemonsqueezers = bld_lemonsqueezers + 1;
-	cst_lemonsqueezers = Math.floor(cst_lemonsqueezers * incr_lemonsqueezers);
-	};
-	document.getElementById("res_money").innerHTML = res_money;
-	document.getElementById("bld_lemonsqueezers").innerHTML = bld_lemonsqueezers;
-	document.getElementById("cst_lemonsqueezers").innerHTML = cst_lemonsqueezers;
-};
-
-function buyStand()
-{
-if (res_money >= cst_lemonstands) 
-	{
-	res_money = res_money - cst_lemonstands;
-	bld_lemonstands = bld_lemonstands + 1;
-	cst_lemonstands = Math.floor(cst_lemonstands * incr_lemonstands);
-	};
-	document.getElementById("res_money").innerHTML = res_money;
-	document.getElementById("bld_lemonstands").innerHTML = bld_lemonstands;
-	document.getElementById("cst_lemonstands").innerHTML = cst_lemonstands;
-};
-
-function buyGenerator()
-{
-if (res_money >= cst_agenerators) 
-	{
-	res_money = res_money - cst_agenerators;
-	bld_agenerators = bld_agenerators + 1;
-	cst_agenerators = Math.floor(cst_agenerators * incr_agenerators);
-	};
-	document.getElementById("res_money").innerHTML = res_money;
-	document.getElementById("bld_agenerators").innerHTML = bld_agenerators;
-	document.getElementById("cst_agenerators").innerHTML = cst_agenerators;
-};
-
-function buyScienceCenter()
-{
-if (res_money >= cst_sciencecenters) 
-	{;
-	res_money = res_money - cst_sciencecenters;
-	bld_sciencecenters = bld_sciencecenters + 1;
-	cst_sciencecenters = Math.floor(cst_sciencecenters * incr_sciencecenters);
-	};
-	document.getElementById("res_money").innerHTML = res_money;
-	document.getElementById("bld_sciencecenters").innerHTML = bld_sciencecenters;
-	document.getElementById("cst_sciencecenters").innerHTML = cst_sciencecenters;
-};
-
-function tickTrees()
-{
-	res_lemons = res_lemons + bld_lemontrees * lemontrees_produce;
-	document.getElementById("res_lemons").innerHTML = res_lemons;
-	document.getElementById("res_money").innerHTML = res_money;
-};
-
-function tickSqueezers()
-{
-	if (bld_lemonsqueezers >= 1)
-	{
-		if (res_lemons >= bld_lemonsqueezers) 
-		{
-			res_lemons = res_lemons - bld_lemonsqueezers * lemonjuice_amount;
-			res_lemonjuice = res_lemonjuice + bld_lemonsqueezers * lemonjuice_amount;
-			document.getElementById("res_lemons").innerHTML = res_lemons;
-			document.getElementById("res_lemonjuice").innerHTML = res_lemonjuice;
-			
-		};
-	};
-};
-
-function tickStands()
-{
-if (res_lemonjuice >= bld_lemonstands * 6) 
-	{
-		res_lemonjuice = res_lemonjuice - bld_lemonstands * 6;
-		res_money = res_money + bld_lemonstands * lemonstands_money;
-		document.getElementById("res_lemonjuice").innerHTML = res_lemonjuice;
-		document.getElementById("res_money").innerHTML = res_money;
-	};
-};
-
-function tickGenerators()
-{
-if (bld_agenerators >= 1) 
-	{
-	if (res_lemonjuice >= bld_agenerators * generatorjuice) 
-		{
-		res_lemonjuice = res_lemonjuice - bld_agenerators * 13 * generatorspeed;
-		res_volt = res_volt + bld_agenerators * generatorspeed;
-		document.getElementById("res_lemons").innerHTML = res_lemons;
-		document.getElementById("res_volt").innerHTML = res_volt;
-		
-		
-		};
-	};
-};
-
-function tickScienceCenter()
-{
-if (bld_sciencecenters >= 1) 
-	{
-	if (res_volt >= bld_sciencecenters * sciencevolt) 
-		{
-		res_science = res_science + bld_sciencecenters * sciencespeed;
-		res_volt = res_volt - bld_sciencecenters *  sciencevolt;
-		res_money = res_money + bld_sciencecenters * 18;
-		document.getElementById("res_science").innerHTML = res_science;
-		document.getElementById("res_volt").innerHTML = res_volt;
-		};
-	};
-};
-
-function tickGolems()
-{
-	golem_atkcur = golems_owned * 5;
-	
-	document.getElementById("golem_hpcur").innerHTML = golem_hpcur;
-	document.getElementById("enemyhp").innerHTML = enemy_hpcur;
-	document.getElementById("enemyatk").innerHTML = enemy_atkcur;
-	document.getElementById("golems_died").innerHTML = golems_died;
-	document.getElementById("enemies_died").innerHTML = enemy_died;
-	
-	if (golems_owned >= 1)
-	{
-		if (golem_hpcur >= 1) {
-			damage_taken = Math.floor(Math.random() * 2);
-			golem_hpcur = golem_hpcur - damage_taken;
-			damage_dealt = (Math.floor(Math.random() * (golem_atkcur * 1.5)) + (golem_atkcur / 2));
-			enemy_hpcur = enemy_hpcur - damage_dealt;
-			
-			if (enemy_hpcur <= 0) {
-				enemy_died = enemy_died + 1;
-				enemy_hpcur = 35 * exploration_stage;
-				enemy_atkcur = exploration_stage;
-				if (exploration_stage >= 20) {
-					var numv = Math.floor(Math.random() * 100)
-					if (numv == 0){
-						pres_limes = pres_limes + exploration_stage - 19;
-					}
-				}
-				var num = Math.floor(Math.random() * 100)
-				if (num < 5) {
-					golem_hpcur = golem_hpcur - (5 + Math.floor(Math.random() * 10));
-				}
-				if (num >= 5 && num < 55) {
-					golem_hpcur = golem_hpcur - 3;
-					explorationpart_cur = explorationpart_cur + 1;
-					var numx = Math.floor(Math.random() * 5)
-					if (numx == 0) {
-						res_money = res_money + 20 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numx == 1) {
-						res_money = res_money + 35 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numx == 2) {
-						res_money = res_money + 5 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numx == 3) {
-						res_lemons = res_lemons + 35 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numx == 4) {
-						res_lemons = res_lemons + 25 * Math.floor(exploration_stage * 0.5);
-						res_money = res_money + 25 * Math.floor(exploration_stage * 0.5);
-					}
-				}
-				if (num >= 55 && num < 80) {
-					golem_hpcur = golem_hpcur - 1;
-					explorationpart_cur = explorationpart_cur + 1;
-					var numy = Math.floor(Math.random() * 5)
-					if (numy == 0) {
-						res_money = res_money + 35 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numy == 1) {
-						res_lemonjuice = res_lemonjuice + 40 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numy == 2) {
-						res_science = res_science + 5 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numy == 3) {
-						res_volt = res_volt + 5 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numy == 4) {
-						res_lemons = res_lemons + 40 * Math.floor(exploration_stage * 0.5);
-						res_money = res_money + 40 * Math.floor(exploration_stage * 0.5);
-					}
-					document.getElementById("exploration_stage").innerHTML = exploration_stage;
-					document.getElementById("explorationpart_cur").innerHTML = explorationpart_cur;
-				}
-				if (num >= 80 && num < 98) {
-					golem_hpcur = golem_hpcur - 1;
-					explorationpart_cur = explorationpart_cur + 1;
-					var numy = Math.floor(Math.random() * 5)
-					if (numw == 0) {
-						res_money = res_money + 45 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numw == 1) {
-						res_lemonjuice = res_lemonjuice + 50 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numw == 2) {
-						res_science = res_science + 8 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numw == 3) {
-						res_volt = res_volt + 8 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numw == 4) {
-						res_lemons = res_lemons + 50 * Math.floor(exploration_stage * 0.5);
-						res_money = res_money + 50 * Math.floor(exploration_stage * 0.5);
-					}
-					document.getElementById("exploration_stage").innerHTML = exploration_stage;
-					document.getElementById("explorationpart_cur").innerHTML = explorationpart_cur;
-				}
-				if (num >= 98) {
-					golem_hpcur = golem_hpcur + 5;
-					pres_limes = pres_limes + exploration_stage;
-					explorationpart_cur = explorationpart_cur + 1;
-					var numz = Math.floor(Math.random() * 10)
-					if (numz == 0) {
-						res_volt = res_volt + 25 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numz >= 1 && numz <= 8) {
-						res_science = res_science + 25 * Math.floor(exploration_stage * 0.5);
-					}
-					if (numz == 9) {
-						golems_owned = golems_owned + 1;
-					}
-					document.getElementById("exploration_stage").innerHTML = exploration_stage;
-					document.getElementById("explorationpart_cur").innerHTML = explorationpart_cur;
-					
-				}
-				if (explorationpart_cur >= 100) {
-					explorationpart_cur = 1;
-					exploration_stage = exploration_stage + 1;
-				
-					document.getElementById("exploration_stage").innerHTML = exploration_stage;
-					document.getElementById("explorationpart_cur").innerHTML = explorationpart_cur;
-				}
-				if (damage_taken >= 50) 
-				{golems_owned = golems_owned - 1;
-			golems_died = golems_died + 1;
-			damage_taken = 0;}
+	tick() {
+		this.lemonlimit = 25 * this.treeamount;
+		if (this.treeamount > 0) {
+			document.getElementById("lemonbartext").innerHTML = lemongame.specials[0].lemonamount.toFixed(2) + " / " + lemongame.specials[0].lemonlimit;
+			if (this.lemonamount < this.lemonlimit) {
+				this.lemonamount += ((this.treeamount / 10) * this.multiplier) / lemongame.tps;
 			}
 		}
-	document.getElementById("explorationupdate").innerText = damage_dealt + ' Schaden gemacht';
+		if (this.lemonamount > this.lemonlimit) {this.lemonamount = this.lemonlimit};
+	}
+	
+	pick() {
+		if (this.lemonamount >= 1) {
+			lemongame.resources[0].add(1);
+			this.lemonamount -= 1;
+			document.getElementById("lemontreegetlemondescription").innerHTML = "Pflücke eine der Zitronen";
+
+			lemongame.unlocks[1] = 1;
+			updateWindows();
+		}
+	}
+	
+	upgradeLimit() {
+		if (lemongame.resources[1].check(this.upgradecost) == true) {
+			lemongame.resources[1].sub(this.upgradecost)
+			this.treelimit = this.treelimit + this.spaceperupgrade;
+			this.upgradecost = this.upgradecost * 100;
+			document.getElementById("lemontreelimitbuydescription").innerHTML = "Kaufe für " + this.upgradecost + " Euro, " + this.spaceperupgrade +" mehr Platz für deine Bäume";
+			document.getElementById("lemontreebartext").innerHTML = this.treeamount + " / " + this.treelimit;
+		} else {return;}
+	}
+	
+	buyTree() {
+		if (this.treeamount < this.treelimit) {
+			if (lemongame.resources[1].check(this.cost) == true) {
+				lemongame.resources[1].sub(this.cost)
+				this.treeamount += 1;
+				if (this.treeamount % 10 == 0 && this.treeamount != 0) {this.cost = this.cost * 10;}
+				document.getElementById("lemontreebartext").innerHTML = this.treeamount + " / " + this.treelimit;
+				document.getElementById("lemontreebuydescription").innerHTML = "Kaufe einen Zitronenbaum für " + this.cost + " Euro. Jeder Baum braucht 10 Sekunden für eine Zitrone";
+			} else {return;}
+		} else {return;}
 	}
 }
 
-function toggleGenerator()
-{
-	if (togglegen == 0) {
-	document.getElementById("togglegen").innerText = 'An';
-	togglegen = 1;
-	} else if (togglegen == 1) {
-	document.getElementById("togglegen").innerText = 'Aus';
-	togglegen = 0;
-	}
-};
+class Lemonstand {
+	constructor (standamount, lemonamount, lemonlimit, multiplier, cost, upgradecost, timeupgradecost) {
+		this.standamount = standamount || 1;
+		this.lemonamount = lemonamount || 0;
+		this.lemonlimit = lemonlimit || 100;
+		this.multiplier = multiplier || 1;
+		this.cost = cost || 0;
+		this.upgradecost = upgradecost || 100;
+		this.timeupgradecost = timeupgradecost || 100;
 
-function toggleScience()
-{
-	if (togglesci == 0) {
-	document.getElementById("togglesci").innerText = 'An';
-	togglesci = 1;
-	} else if (togglesci == 1) {
-	document.getElementById("togglesci").innerText = 'Aus';
-	togglesci = 0;
-	}
-};
 
-function toggleStands()
-{
-	if (togglestand == 0) {
-	document.getElementById("togglestand").innerText = 'An';
-	togglestand = 1;
-	} else if (togglestand == 1) {
-	document.getElementById("togglestand").innerText = 'Aus';
-	togglestand = 0;
+		this.level = 1;
+		
+		this.lemonadeprice = 2;
+		this.lemonsforlemonade = 0.2;
+		
+		this.fame = 0;
+		this.fameNextLvl = 25;
+		this.lvlMultiplier = 5;
+		
+		this.sellCooldown = 120;
+		this.timer = 0;
+		this.multisell = 3;
 	}
-};
-
-function upgradeLemonamount()
-{
-	if (res_science >= cst_lemonamountupgr) {
-	res_science = res_science - cst_lemonamountupgr;
-	cst_lemonamountupgr = Math.floor(cst_lemonamountupgr * 2.5);
-	lemontrees_produce = lemontrees_produce * 2;
-	}
-	document.getElementById("cst_lemonamountupgr").innerHTML = cst_lemonamountupgr;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("lemontrees_produce").innerHTML = lemontrees_produce;
-};
-
-function upgradeJuiceamount()
-{
-	if (res_science >= cst_juiceamountupgr) {
-	res_science = res_science - cst_juiceamountupgr;
-	cst_juiceamountupgr = Math.floor(cst_juiceamountupgr * 2.5);
-	lemonjuice_amount = lemonjuice_amount * 2;
-	}
-	document.getElementById("cst_juiceamountupgr").innerHTML = cst_juiceamountupgr;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("lemonjuice_amount").innerHTML = lemonjuice_amount;
-};
-
-function upgradeStandamount()
-{
-	if (res_science >= cst_standamountupgr) {
-	res_science = res_science - cst_standamountupgr;
-	cst_standamountupgr = Math.floor(cst_standamountupgr * 2.5);
-	lemonstands_money = lemonstands_money * 2;
-	lemonade_money = lemonade_money * 2;
-	}
-	document.getElementById("cst_standamountupgr").innerHTML = cst_standamountupgr;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("lemonstands_money").innerHTML = lemonstands_money;
-	document.getElementById("lemonade_money").innerHTML = lemonade_money;
-};
-
-function upgradeTreelimit()
-{
-	if (res_science >= cst_treelimitupgr) {
-	res_science = res_science - cst_treelimitupgr;
-	cst_treelimitupgr = Math.floor(cst_treelimitupgr * 2.5);
-	lemontrees_limit = lemontrees_limit * 2;
-	}
-	document.getElementById("cst_treelimitupgr").innerHTML = cst_treelimitupgr;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("lemontrees_limit").innerHTML = lemontrees_limit;
-};
-function upgradeGeneratorspeed()
-{
-	if (res_science >= cst_generatorspeedupgr) {
-	res_science = res_science - cst_generatorspeedupgr;
-	cst_generatorspeedupgr = Math.floor(cst_generatorspeedupgr * 2.5);
-	generatorspeed = generatorspeed * 2;
-	generatorjuice = generatorjuice * 2;
-	}
-	document.getElementById("cst_generatorspeedupgr").innerHTML = cst_generatorspeedupgr;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("generatorspeed").innerHTML = generatorspeed;
-	document.getElementById("generatorjuice").innerHTML = generatorspeed;
-};
-function upgradeSciencespeed()
-{
-	if (res_science >= cst_sciencespeedupgr) {
-	res_science = res_science - cst_sciencespeedupgr;
-	cst_sciencespeedupgr = Math.floor(cst_sciencespeedupgr * 2.5);
-	sciencespeed = sciencespeed * 2;
-	sciencevolt = sciencevolt * 2;
-	}
-	document.getElementById("cst_sciencespeedupgr").innerHTML = cst_sciencespeedupgr;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("sciencespeed").innerHTML = sciencespeed;
-	document.getElementById("sciencevolt").innerHTML = sciencevolt;
-};
-window.setInterval(function(){
-	document.getElementById("lemontrees_limit").innerHTML = lemontrees_limit;
-	document.getElementById("lemonstands_money").innerHTML = lemonstands_money;
-	document.getElementById("lemontrees_produce").innerHTML = lemontrees_produce;
-	document.getElementById("res_money").innerHTML = res_money;
-	document.getElementById("res_volt").innerHTML = res_volt;
-	document.getElementById("res_lemons").innerHTML = res_lemons;
-	document.getElementById("res_lemonjuice").innerHTML = res_lemonjuice;
-	document.getElementById("res_science").innerHTML = res_science;
-	document.getElementById("pres_limes").innerHTML = pres_limes;
-	document.getElementById("exploration_stage").innerHTML = exploration_stage;
-	document.getElementById("explorationpart_cur").innerHTML = explorationpart_cur;
-	document.getElementById("golems_owned").innerHTML = golems_owned;
-	document.getElementById("golem_hpcur").innerHTML = golem_hpcur;
-	document.getElementById("golem_hpmax").innerHTML = golem_hpmax;
-	document.getElementById("golem_atkcur").innerHTML = golem_atkcur;
-	document.getElementById("cst_golem_juice").innerHTML = cst_golem_juice;
-	document.getElementById("cst_golem_money").innerHTML = cst_golem_money;
-	document.getElementById("cst_golem_volt").innerHTML = cst_golem_volt;
-	document.getElementById("cst_golem_science").innerHTML = cst_golem_science;
 	
-	if (togglesci == 1) {
-		tickScienceCenter();
+	unlock() {
+		lemongame.unlocks[1] = 1;
+		updateWindows();
 	}
-	if (togglegen == 1) {
-		tickGenerators();
+
+	tick() {
+		if (this.fame >= this.fameNextLvl) {
+			this.fame = this.fame - this.fameNextLvl;
+			this.fameNextLvl = this.fameNextLvl * this.lvlMultiplier;
+			this.lvlMultiplier ++;
+			this.level ++;
+			lemongame.unlocks[2] = 1;
+			updateWindows();
+			document.getElementById("lemonstandleveltext").innerHTML = "Limonadenlevel " + this.level;
+		}
+		
+		if (this.timer < this.sellCooldown) {this.timer ++;} else {
+			for (let i = 0; i < this.multisell; i++) {
+				if (this.lemonamount > (this.lemonsforlemonade)) {
+					this.lemonamount -= this.lemonsforlemonade;
+					lemongame.resources[1].add(this.lemonadeprice);
+					this.fame += 1 * this.multiplier;
+					document.getElementById("lemonstandleveltext").innerHTML = "Limonadenlevel " + this.level;
+				}
+			}
+			this.timer = 0;
+		}
+		document.getElementById("lemonstandlemonbartext").innerHTML = this.lemonamount.toFixed(1) + " / " + this.lemonlimit;
+		document.getElementById("lemonstandbartext").innerHTML = this.fame + " / " + this.fameNextLvl;
 	}
-	if (togglestand == 1) {
-		tickStands();
+	
+	addLemon(n) {
+		if ((this.lemonamount + n) <= this.lemonlimit) {
+			if (lemongame.resources[0].check(n) == true) {
+				this.lemonamount ++;
+				lemongame.resources[0].sub(n);
+			}
+		}
 	}
-	tickTrees();
-	tickSqueezers();
-	tickGolems();
-}, 1000);
+	
+	upgradeDelay() {
+		if (lemongame.resources[1].check(this.timeupgradecost) == true) {
+			lemongame.resources[1].sub(this.timeupgradecost)
+			this.timeupgradecost = this.timeupgradecost * 10;
+			if(this.sellCooldown > 10) {
+				this.sellCooldown = this.sellCooldown / 4 * 3;
+			} else if (this.sellCooldown == 10) {
+				return;
+			}
+			if (this.sellCooldown < 10) {
+				this.sellCooldown = 10;
+			}
+			document.getElementById("upgradestanddelay").innerHTML = "Verringert die Zeit zwischen Kunden für " + (this.timeupgradecost) + " Euro";
+		} else {return;}
+	}
+	
+	upgradeLimit() {
+		if (lemongame.resources[1].check(this.upgradecost) == true) {
+			lemongame.resources[1].sub(this.upgradecost)
+			this.lemonlimit = this.lemonlimit * 2;
+			this.upgradecost = this.upgradecost * 10;
+			document.getElementById("lemonstandlimitbuydescription").innerHTML = "Verdopple den Platz für deine Zitronen für " + (this.upgradecost) + " Euro";
+			document.getElementById("lemonstandlemonbartext").innerHTML = this.lemonamount + " / " + this.lemonlimit;
+		} else {return;}
+	}
+	
+	sellLemonade() {
+		if (this.lemonamount >= this.lemonsforlemonade) {
+			lemongame.resources[1].add(this.lemonadeprice);
+			this.lemonamount -= this.lemonsforlemonade;
+		}
+	}
+}
+
+class Lemonpress {
+	constructor (presslevel, lemonamount, lemonlimit, juiceamount, juicelimit, multiplier, cost) {
+		this.presslevel = presslevel || 1;
+		this.lemonamount = lemonamount || 0;
+		this.lemonlimit = lemonlimit || 25;
+		this.juiceamount = juiceamount || 0;
+		this.juicelimit = juicelimit || 100;
+		this.multiplier = multiplier || 1;
+		this.cost = cost || 0;
+
+		this.lemonperoperation = 0.5;
+		this.juiceforlemon = 1;
+		
+		this.pressCooldown = 900;
+		this.timer = 0;
+		this.multipress = 1;
+
+		this.manualpress = 5;
+	}
+	
+	unlock() {
+		lemongame.unlocks[2] = 1;
+		updateWindows();
+	}
+
+	press() {
+		if (this.timer < this.pressCooldown) {this.timer += this.manualpress}
+	}
+
+	tick() {
+		if (this.lemonamount > this.lemonperoperation) {
+			if (this.timer < this.pressCooldown) {this.timer ++;} else {
+				for (let i = 0; i < this.multipress; i++) {
+					if (this.lemonamount > (this.lemonperoperation)) {
+						this.lemonamount -= this.lemonperoperation;
+						this.juiceamount += this.juiceforlemon;
+						document.getElementById("lemonpressjuicebartext").innerHTML = this.juiceamount.toFixed(2) + " / " + this.juicelimit;
+					}
+				}
+				this.timer = 0;
+			}
+		}	
+		document.getElementById("lemonpresslemonbartext").innerHTML = this.lemonamount.toFixed(1) + " / " + this.lemonlimit;
+	}
+	
+	addLemon(n) {
+		if ((this.lemonamount + n) <= this.lemonlimit) {
+			if (lemongame.resources[0].check(n) == true) {
+				this.lemonamount ++;
+				lemongame.resources[0].sub(n);
+			}
+		}
+	}
+	
+	getJuice() {
+		if (this.juiceamount > 0) {
+			lemongame.resources[4].add(this.juiceamount);
+			this.juiceamount = 0;
+			lemongame.tabs[2] = 1;
+			updateButtons();
+
+			if ((lemongame.specials[2].lemonamount / lemongame.specials[2].lemonlimit) * 100 > 100) {
+				document.getElementById("lemonpresslemonbar").style.width = "100%";
+			} else {
+				document.getElementById("lemonpresslemonbar").style.width = (lemongame.specials[2].lemonamount / lemongame.specials[2].lemonlimit) * 100 + "%";
+			}
+
+			if ((lemongame.specials[2].timer / lemongame.specials[2].pressCooldown) * 100 > 100) {
+				document.getElementById("lemonpressprogressbar").style.width = "100%";
+			} else {
+				document.getElementById("lemonpressprogressbar").style.width = (lemongame.specials[2].timer / lemongame.specials[2].pressCooldown) * 100 + "%";
+			}
+			
+			if ((lemongame.specials[2].juiceamount / lemongame.specials[2].juicelimit) * 100 > 100) {
+				document.getElementById("lemonpressjuicebar").style.width = "100%";
+			} else {
+				document.getElementById("lemonpressjuicebar").style.width = (lemongame.specials[2].juiceamount / lemongame.specials[2].juicelimit) * 100 + "%";
+			}
+
+		}
+		document.getElementById("lemonpressjuicebartext").innerHTML = this.juiceamount.toFixed(2) + " / " + this.juicelimit;
+	}
+}
+
+class Building {
+    constructor (name, amount, multiplier, cost) {
+		this.name = name;
+		this.amount = amount || 0;
+		this.multiplier = multiplier || 1;
+		this.cost = cost || 25;
+    }
+}
+
+class Resource {
+    constructor (name, amount, persec, multiplier) {
+		this.name = name;
+		this.amount = amount || 0;
+		this.persec = persec || 0;
+		this.multiplier = multiplier || 1;
+    }
+	
+	add(n) {
+		this.amount += (n * this.multiplier);
+	}
+	
+	sub(n) {
+		this.amount -= (n);
+	}
+	
+	check(n) {
+		if (this.amount >= n) {return true;} else {return false;}
+	}
+}
+
+class Upgrade {
+	constructor (div, building, name, description, cost, costincr) {
+		this.div = div;
+		this.level = 0;
+		this.building = building;
+		this.name = name;
+		this.description = description;
+		this.cost = cost;
+		this.costincr = costincr;
+		this.visible = false;
+	}
+
+	hide(){
+		document.getElementById(this.div).style.display = "none";
+	}
+
+	show() {
+		document.getElementById(this.div).style.display = "block";
+	}
+
+	buy() {
+		if (lemongame.resources[1].check(this.cost) == true) {
+			lemongame.resources[1].sub(this.cost);
+			this.level += 1;
+			this.cost = this.cost * this.costincr;
+			hide();
+		}
+	}
+}
+
+function togglePanel(panel) {
+	if (document.getElementById(panel).style.display == "block") {
+		document.getElementById(panel).style.display = "none";
+	} else {
+		document.getElementById(panel).style.display = "block";
+	}
+	
+	if (panel == "stats") {
+		document.getElementById("settings").style.display = "none";
+	}
+	if (panel == "settings") {
+		document.getElementById("stats").style.display = "none";
+	}
+}
+
+function purchaseUpgrade(building, type) {
+	if (building == "lemonfield") {
+		if (type == "unlock") {
+			lemongame.specials[0].unlock();
+		} else if (type == "limit") {
+			lemongame.specials[0].upgradeLimit();
+		}
+	} else if (building == "lemonstand") {
+		if (type == "unlock") {
+			lemongame.specials[1].unlock();
+			document.getElementById("statsstand").style.display = "block";
+		} else if (type == "limit") {
+			lemongame.specials[1].upgradeLimit();
+		} else if (input == "delay") {
+			lemongame.specials[1].upgradeDelay();
+		}
+	} else if (building == "lemonpress") {
+		if (type == "unlock") {
+			lemongame.specials[2].unlock();
+			document.getElementById("statspress").style.display = "block";
+		} else if (type == "limit") {
+			lemongame.specials[2].upgradeLimit();
+		}
+	}
+}
+
+function purchaseThing(input) {
+	if (input == "lemontree") {
+		lemongame.specials[0].buyTree();
+	}
+}
+
+function doThing(input) {
+	if (input == "getLemon") {
+		lemongame.specials[0].pick();
+	} else if (input == "press") {
+		lemongame.specials[2].press();
+	} else if (input == "getJuice") {
+		lemongame.specials[2].getJuice();
+	} else if (input == "lemonToStand") {
+		lemongame.specials[1].addLemon(1);
+	} else if (input == "lemonToPress") {
+		lemongame.specials[2].addLemon(1);
+	}
+
+	if ((lemongame.specials[0].treeamount / lemongame.specials[0].treelimit) * 100 > 100) {
+		document.getElementById("lemontreebar").style.width = "100%";
+	} else {
+		document.getElementById("lemontreebar").style.width = (lemongame.specials[0].treeamount / lemongame.specials[0].treelimit) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[0].lemonamount / lemongame.specials[0].lemonlimit) * 100 > 100) {
+		document.getElementById("lemonbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonbar").style.width = (lemongame.specials[0].lemonamount / lemongame.specials[0].lemonlimit) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[1].fame / lemongame.specials[1].fameNextLvl) * 100 > 100) {
+		document.getElementById("lemonstandbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonstandbar").style.width = (lemongame.specials[1].fame / lemongame.specials[1].fameNextLvl) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[1].lemonamount / lemongame.specials[1].lemonlimit) * 100 > 100) {
+		document.getElementById("lemonstandlemonbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonstandlemonbar").style.width = (lemongame.specials[1].lemonamount / lemongame.specials[1].lemonlimit) * 100 + "%";
+	}
+
+	if ((lemongame.specials[2].lemonamount / lemongame.specials[2].lemonlimit) * 100 > 100) {
+		document.getElementById("lemonpresslemonbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonpresslemonbar").style.width = (lemongame.specials[2].lemonamount / lemongame.specials[2].lemonlimit) * 100 + "%";
+	}
+
+	if ((lemongame.specials[2].timer / lemongame.specials[2].pressCooldown) * 100 > 100) {
+		document.getElementById("lemonpressprogressbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonpressprogressbar").style.width = (lemongame.specials[2].timer / lemongame.specials[2].pressCooldown) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[2].juiceamount / lemongame.specials[2].juicelimit) * 100 > 100) {
+		document.getElementById("lemonpressjuicebar").style.width = "100%";
+	} else {
+		document.getElementById("lemonpressjuicebar").style.width = (lemongame.specials[2].juiceamount / lemongame.specials[2].juicelimit) * 100 + "%";
+	}
+}
+
+function updateWindows() {
+	if (lemongame.unlocks[0] == 0) {
+        document.getElementById("lemontreefield").style.display = "none";
+    } else {
+        document.getElementById("lemontreefield").style.display = "block";
+	}
+	
+	if (lemongame.unlocks[1] == 0) {
+        document.getElementById("lemonstand").style.display = "none";
+    } else {
+        document.getElementById("lemonstand").style.display = "block";
+	}
+
+	if (lemongame.unlocks[2] == 0) {
+        document.getElementById("lemonpress").style.display = "none";
+    } else {
+        document.getElementById("lemonpress").style.display = "block";
+	}
+
+
+}
+
+function updateButtons() {
+    tablinks = document.getElementsByClassName("tablinks");
+	
+    let activeTabs = 0;
+	
+    for (let i = 0; i < lemongame.tabs.length; i++) {
+        if (lemongame.tabs[i] == 1) {activeTabs++;}
+    }
+	
+    if (lemongame.tabs[0] == 0) {
+        document.getElementById("tablinkbuttonZitronen").style.display = "none";
+    } else {
+        document.getElementById("tablinkbuttonZitronen").style.display = "block";
+    }
+	
+    if (lemongame.tabs[1] == 0) {
+        document.getElementById("tablinkbuttonEuro").style.display = "none";
+    } else {
+        document.getElementById("tablinkbuttonEuro").style.display = "block";
+    }
+	
+    if (lemongame.tabs[2] == 0) {
+        document.getElementById("tablinkbuttonWissenschaft").style.display = "none";
+    } else {
+        document.getElementById("tablinkbuttonWissenschaft").style.display = "block";
+    }
+	
+    if (lemongame.tabs[3] == 0) {
+        document.getElementById("tablinkbuttonLimetten").style.display = "none";
+    } else {
+        document.getElementById("tablinkbuttonLimetten").style.display = "block";
+    }
+	
+    for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].style.width = "calc(" + (100 / activeTabs).toString() + "% - 2px)";
+    }
+}
+
+function gameLoop() {
+    document.getElementById("tablinkbuttonZitronen").innerHTML = lemongame.resources[0].amount + " Zitronen";
+    document.getElementById("tablinkbuttonEuro").innerHTML = lemongame.resources[1].amount + " Euro";
+    document.getElementById("tablinkbuttonWissenschaft").innerHTML = lemongame.resources[2].amount + " Wissenschaft";
+    document.getElementById("tablinkbuttonLimetten").innerHTML = lemongame.resources[3].amount + " Limetten";
+	
+	if ((lemongame.specials[0].treeamount / lemongame.specials[0].treelimit) * 100 > 100) {
+		document.getElementById("lemontreebar").style.width = "100%";
+	} else {
+		document.getElementById("lemontreebar").style.width = (lemongame.specials[0].treeamount / lemongame.specials[0].treelimit) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[0].lemonamount / lemongame.specials[0].lemonlimit) * 100 > 100) {
+		document.getElementById("lemonbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonbar").style.width = (lemongame.specials[0].lemonamount / lemongame.specials[0].lemonlimit) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[1].fame / lemongame.specials[1].fameNextLvl) * 100 > 100) {
+		document.getElementById("lemonstandbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonstandbar").style.width = (lemongame.specials[1].fame / lemongame.specials[1].fameNextLvl) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[1].lemonamount / lemongame.specials[1].lemonlimit) * 100 > 100) {
+		document.getElementById("lemonstandlemonbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonstandlemonbar").style.width = (lemongame.specials[1].lemonamount / lemongame.specials[1].lemonlimit) * 100 + "%";
+	}
+
+	if ((lemongame.specials[2].lemonamount / lemongame.specials[2].lemonlimit) * 100 > 100) {
+		document.getElementById("lemonpresslemonbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonpresslemonbar").style.width = (lemongame.specials[2].lemonamount / lemongame.specials[2].lemonlimit) * 100 + "%";
+	}
+
+	if ((lemongame.specials[2].timer / lemongame.specials[2].pressCooldown) * 100 > 100) {
+		document.getElementById("lemonpressprogressbar").style.width = "100%";
+	} else {
+		document.getElementById("lemonpressprogressbar").style.width = (lemongame.specials[2].timer / lemongame.specials[2].pressCooldown) * 100 + "%";
+	}
+	
+	if ((lemongame.specials[2].juiceamount / lemongame.specials[2].juicelimit) * 100 > 100) {
+		document.getElementById("lemonpressjuicebar").style.width = "100%";
+	} else {
+		document.getElementById("lemonpressjuicebar").style.width = (lemongame.specials[2].juiceamount / lemongame.specials[2].juicelimit) * 100 + "%";
+	}
+
+	lemongame.specials[0].tick();
+	lemongame.specials[1].tick();
+	lemongame.specials[2].tick();
+}
+
+function loaded() {
+    updateButtons();
+	updateWindows();
+	
+	document.getElementById("settings").style.display = "none";
+	document.getElementById("stats").style.display = "none";
+	document.getElementById("workers").style.display = "none";
+
+	document.getElementById("statsfield").style.display = "none";
+	document.getElementById("statsstand").style.display = "none";
+	document.getElementById("statspress").style.display = "none";
+
+    document.getElementById("tabZitronen").style.display = "none";
+    document.getElementById("tabEuro").style.display = "none";
+    document.getElementById("tabWissenschaft").style.display = "none";
+    document.getElementById("tabLimetten").style.display = "none";
+}
+
+function startGame() {
+	lemongame.tabs = [1, 1, 0, 0]; // Tab 1 - 4
+	lemongame.unlocks = [0, 0, 0]; // Lemontreefield, Lemonadestand, Lemonpress
+
+	if (document.getElementById("nameinput").value != "") {
+		lemongame.user = document.getElementById("nameinput").value;
+	}
+	
+	document.getElementById("welcomescreen").style.display = "none";
+	togglePanel("tabZitronen");
+	
+	lemongame.resources =
+	[
+	new Resource("Zitronen"),
+	new Resource("Euro", 25),
+	new Resource("Wissenschaft"),
+	new Resource("Limetten"),
+	new Resource("Zitronensaft"),
+	];
+	
+	lemongame.specials = 
+	[
+	new Lemonfield(),
+	new Lemonstand(),
+	new Lemonpress(),
+	];
+	
+	lemongame.buildings = 
+	[
+	];
+	
+	lemongame.upgrades = 
+	[
+	new Upgrade("upgradefieldlimit", "Zitronenfeld", "Baumlimit", "Schafft Platz für 20 mehr Bäume", 100, 40),
+	new Upgrade("upgradestandlimit", "Limonadenstand", "Lagerlimit", "Dein Zitronenstand kann doppelt soviele Zitronen lagern", 1000, 10),
+	new Upgrade("upgradestanddelay", "Limonadenstand", "Mehr Kunden", "Dein Zitronenstand verkauft jetzt schneller Limonade", 1000, 40),
+	new Upgrade("upgradepressspeed", "Zitronenpresse", "Größere Presse", "Deine Presse produziert schneller Zitronensaft", 10000, 5),
+	]
+
+	for (let i = 0; i < lemongame.upgrades.length; i++) {
+		lemongame.upgrades[i].hide();
+	}
+
+	lemongame.specials[0].unlock();
+	document.getElementById("statsfield").style.display = "block";
+
+    updateButtons();
+	updateWindows();
+    setInterval(gameLoop, 1000 / lemongame.tps);
+}
+
+loaded();
