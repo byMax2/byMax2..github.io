@@ -9,10 +9,10 @@ var start = [["gelb1", "gelb2", "gelb3", "gelb4"], ["gruen1", "gruen2", "gruen3"
 var hausfelder = [[29, 30, 31, 32], [9, 12, 15, 22], [44, 51, 54, 57], [34, 35, 36, 37]];
 var figuren = [["gelb1", "gelb2", "gelb3", "gelb4"], ["gruen1", "gruen2", "gruen3", "gruen4"], ["blau1", "blau2", "blau3", "blau4"], ["rot1", "rot2", "rot3", "rot4"]];
 var selection = null;
-var dice = 6;
+var dice = 0;
 var actionneed = false;
 var endgame = false;
-var player = 2;
+var player = 4;
 
 $(document).ready(function() {
 	getRightsize();
@@ -172,8 +172,8 @@ function selectfigur() {
 
 function rollNewDice() {
 	if (!actionneed && !endgame) {
-		//dice = /*getRndZahl();*/6;
-		$('#dice').html("Es wurde eine <b>" + dice + "</b> Gewürfelt!");
+		dice = getRndZahl();
+		$('#dice').html(current.toUpperCase() + " hat eine <b>" + dice + "</b> Gewürfelt!");
 		if (needsASix()) 
 			if (dice == 6) {
 				actionneed = true;

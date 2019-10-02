@@ -1,0 +1,87 @@
+*{
+	font-family: 'Vollkorn SC', serif;
+	box-sizing: border-box;
+	
+}
+body{
+	background-color:rgb(70,70,70) !important;
+}
+h1{
+	width: 30%;
+	text-align: center;
+	font-size: 2.5em;
+	margin-left: 35%;
+	margin-bottom: 9vh;
+	background-color:rgb(191, 188, 180);
+}
+#galgenBox{
+	float: left;
+	width: 40vh;
+	height: 80vh;
+	border:1px solid black;
+	margin-left: 5vh;
+	background-color:rgb(191, 188, 180);
+}
+#img{
+	width: 39vh;
+	position: absolute;
+}
+#wortBox{
+	display: flex;
+	float: right;
+	width: 120vh;
+	height: 30vh;
+	border:1px solid black;
+	margin-bottom: 7.5vh;
+	margin-right: 5vh;
+	background-color:rgb(191, 188, 180);
+}
+#img1{
+	order: 0;
+	width: 180px;
+}
+#loesung{
+	order: 1;
+	flex-grow: 2;
+	font-size: 4em;
+	text-align: center;
+	margin-top: 10vh;
+	text-decoration: dashed;
+	width: 
+}
+#img2{
+	order: 2;
+	width: 180px;
+}
+#btnPly{
+	margin-bottom:8.5vh;
+	float: right;
+	margin-right: 50vh;
+	width: 20vh;
+	height: 4vh;
+	font-size: 2vh;
+}
+#letterBox{
+	float: right;
+	width: 120vh;
+	height: 30vh;
+	border:1px solid black;
+	margin-right: 5vh;
+	line-height: 22vh;
+	background-color:rgb(191, 188, 180);		
+}
+#versuche{
+ 	float: left;
+ 	width: 120vh;
+ 	height: 15vh;
+ 	font-size: 12vh;
+ 	text-align: center;
+}
+#letter{
+line-height: 13vh;
+ float: left;
+ width: 120vh;
+ height: 15vh;
+ padding:none;
+ font-size: 11vh;
+}

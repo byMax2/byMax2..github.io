@@ -2,13 +2,13 @@
 	margin: 0;
 	padding: 0;
 	font-family: fantasy;
+	-moz-user-select: none;
+	user-select: none;
 }
 
 h1 {
 	margin: 1%;
 	text-align: center;
-	-moz-user-select: none;
-	user-select: none;
 	cursor: cell;
 	/*font-family: 'Indie Flower', cursive;*/
 }
@@ -26,6 +26,7 @@ footer {
 	text-align: right;
 	margin: 0.5%;
 	padding: 0.5%;
+	cursor: pointer;
 }
 
 button {

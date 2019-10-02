@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>TicTacToe</title>
+		<script src="./js/jquery-3.4.1.min.js"></script>
+		<script src="./js/script.js"></script>
+		<link href="./css/index.css" type="text/css" rel="stylesheet">
+		<link href="./css/all.css" rel="stylesheet">
+		<link href="./css/animate.css" type="text/css" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Fira+Code&display=swap" rel="stylesheet">
+		<meta charset="utf-8"> 
+	</head>
+	<body onload="init();">
+		<h1>Tic-Tac-Toe</h1>
+		<!-- Erster DIV Bereich für das Spiel -->
+		<div id="outer-border">
+			<!-- Anzahl Gewonnene Spiele X und O -->
+			<div id="game-counter">
+				<div id="x-player"></div>
+				<div id="o-player"></div>
+			</div>
+			<!-- Game Logic -->
+			<div id="game-logic"> 
+			</div>
+			<!-- Neu Spiel Starten -->
+			<div id="game-new-start">
+				<button class="btn" type="button">Game New Start</button>
+				<button class="debug" type="button" style="display: block;"> DEBUG </button>
+			</div>
+		</div>
+
+	</body>
+	<script>
+		$('.btn').on('click', function(){
+			$('#tablewinn').fadeOut(100, function() {
+				gameFieldReset('#fadeoutdiv');
+				gameFieldReset('#tablewinn');
+				gameFieldDelete();
+				gameFieldCreation();
+				$('#fadeoutdiv').fadeIn(100);
+			});
+		});
+
+		$('.debug').on('click', function(){
+			kiSet = 1;
+			kiStart();
+		});
+	</script>
+</html>
