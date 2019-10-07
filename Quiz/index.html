@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>IT'S QUIZTIME!</title>
+	<script src="https://kit.fontawesome.com/a076d05399"></script>
+	<link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Changa:300&display=swap" rel="stylesheet"> 
+	<!--<link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">-->
+
+	<script src="./jquery/jquery-1.11.0.min.js" type="text/javascript"></script>
+	<script src="./script.js" type="text/javascript"></script>
+	<script src="./sweet_alert.js" type="text/javascript"></script>
+	<script type="text/javascript" src="./jquery/jquery-ui.min.js"></script>
+	<script src="confetti.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="./jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="./jquery/jquery-ui.structure.min.css" />
+	<link rel="stylesheet" type="text/css" href="./jquery/jquery-ui.theme.min.css" />
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<link rel="stylesheet" type="text/css" href="./sweet_alert.css">
+</head>
+<body>
+
+	<img src="./logo.png" style="width: 20%"></img>
+
+	<div id="overlayStartseite" class="overlay">
+		<div class ="anzeige" id ="anzeigeStart">
+			<h1 id="ueberschriftTitel">QuizTime</h1>
+			<div id="spieleranzahl">
+				<h3>Spieleranzahl:</h3>
+				<nav class = "auswahl">
+
+					<div class="mid">
+						<label class="rocker" id="checkAnzahl">
+							<input id = "schalterAnzahl" type="checkbox" checked>
+							<span class="switch-left schalter1">Eins</span>
+							<span class="switch-right schalter">Zwei</span>
+						</label>
+					</div>
+					<div class="tooltip">
+						<span class="tooltiptext">Spiele mit der Tastatur oder der Maus</span>
+					</div>
+					<div class="mid" id="mehrspieler">	
+						<label class="rocker"  title="Entscheide zwischen Bedienung mit der Tastatur und mit der Maus">
+							<input id="schalterAuswahltyp" type="checkbox" checked>
+							<span class="switch-left">
+								<i class="fa fa-keyboard-o" aria-hidden="true"></i>
+							</span>
+							<span class="switch-right"> 
+									<i class="fa fa-mouse-pointer" aria-hidden="true"></i></span>
+						</label>
+					</div>
+				</nav>
+			</div>
+
+			<div id="name">
+				<h3 id = "spielerUeberschrift">Spieler:</h3>
+				<nav class = "auswahl">
+					<p id = "spieler1">Spieler 1: <input id = "spielername1" value = "Name"></input></p>
+					<p id = "spieler2">Spieler 2: <input id = "spielername2" value = "Name"></input></p>
+				</nav>
+			</div>
+			<div id = "kombobox">
+				<div id="schwierigkeit">
+					<h3>Schwierigkeit:</h3></br>
+					<select id="grad" title = "Die Schwierigkeit wird durch die Anzahl der Fragen definiert :)">
+						<option value = "leicht">Leicht</option>
+						<option value = "mittel">Mittel</option>
+						<option value = "schwer">Schwer</option>
+					</select>
+				</div>
+				<div>
+					<h3>Fragenanzahl:</h3></br>
+					<input id = "fragen" value = "5"></input>
+				</div>
+			</div>
+			<div id = "multibox">
+				<div id="ton">
+					<audio controls autoplay loop id="musigggg">
+						<source src = "pretty_organ.mp3" type = "audio/mpeg">
+					</audio>
+				</div>
+				<div id="start">
+					<button id = "startButton">
+						Start
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id = "spielfeld" style = "display: none">
+		<div id = "spielerPunktestand">
+			<p id = "punktestand">Punktestand:</p>
+			<p id = "nameSpielerEins">NameEins : 0</p>
+			<p id = "nameSpielerZwei">NameZwei : 0</p>
+		</div>
+
+		<div id = "fragenantwortfeld">
+			<div id = "fragenBlock">
+				<p id = "frage">Was ist die Frage?</p>
+			</div>
+			
+			<div id = "antwortenBlock">
+				<button class= "antwortButton" id ="antwort1">A</button>
+				<button class= "antwortButton" id ="antwort2">B</button>
+				<button class= "antwortButton" id ="antwort3">C</button>
+				<button class= "antwortButton" id ="antwort4">D</button>
+			</div>
+		</div>
+		
+		<div id = "fragenstand">
+			<p id = "stand">1/5</p>
+		</div>
+
+		<div id = "weiter">
+			<button id="weiterButton"><i class="fa fa-arrow-right fa-2x" aria-hidden="true"></i></button>
+		</div>
+	</div>
+
+	<div id="overlayEnde" class="overlay">
+		<div class ="anzeige" id ="anzeigeEnde">
+			<div id = "beendet">
+				<p id = "uberschriftEnde">QUIZ BEENDET</p>
+			</div>
+			<div id = "gewinner">
+				<p id = "gewinnerName">1. Verlierer: Name</p>
+				<p id = "punktestandGewinner">Punktestand: 0 Punkte</p>
+			</div>
+			<div id = "loser">
+				<p id = "loserName">2. Verlierer: Name</p>
+				<p id = "punktestandLoser">Punktestand: 0 Punkte</p>
+			</div>
+			<div id = "neuesSpiel">
+				<button id = "neuesSpielButton"><i class="fa fa-refresh fa-spin fa-2x fa-fw"></i></button>
+			</div>
+		</div>
+	</div>
+
+		</body>
+		</html>
