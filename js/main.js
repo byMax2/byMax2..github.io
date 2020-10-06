@@ -42,6 +42,7 @@ function buildSide() {
 	}
 
 	testlist.push(new Program("Hörtest", "Es wird eine bestimmte Frequenz abgespielt,<br> die nach belieben verändert werden kann.<br> Jenachdem wie lange man den Ton noch hört,<br> kann man beurteilen, wie gut das eigene Gehör ist.", "starten", "Maximilian Lude", "Hearing"))
+	testlist.push(new Program("Arbeitszeitzähler", "Man gibt die Zeit an, zu welcher man eingestochen hat und <br> bekommt die Zeit angezeigt, an der man bedenkenlos gehen darf", "starten", "Maximilian Lude", "Arbeitszeitzaehler"))
 	
 	html += new Programblock("Spiele", gameslist, "#ffc40d").getHTML();
 	html += new Programblock("Tests", testlist, "#da532c").getHTML();
