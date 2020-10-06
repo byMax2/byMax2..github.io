@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arbeitszeitzähler</title>
+    </head>
+    <header>
+        <h1>Arbeitszeitzähler</h1>
+    </header>
+    <body>
+        <div id="input">
+            <h2>Eingabe:</h2>
+            <span>Stunden:</span>
+            <select id="hrs" value="6">
+            </select>
+            <br>
+            <!--<input type="number" id="hrs" value="6" min="5" max="20">-->
+            <span>Minuten:</span>
+            <select id="mins" value="0">
+            </select>
+            <br>
+            <br>
+            <span>Mittagspause:</span>
+            <select id="breakmins" value="30">
+            </select>
+            <span> Minuten</span>
+        </div>
+        <div id="output">
+            <h2 >Ausgabe:</h2>
+            <h3 id="outputtext"></h3>
+        </div>
+    </body>
+    <footer>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            function addMinutes(date, minutes) {
+                return new Date(date.getTime() + minutes*60000);
+            }
+
+            function addHours(date, hours) {
+                return addMinutes(date, hours*60);
+            }
+
+            function berechne() {
+                var come = new Date();
+                come.setHours($("#hrs").val());
+                come.setMinutes($("#mins").val());
+                come.setSeconds(0);
+                come.setMilliseconds(0);
+                var breaktime = $("#breakmins").val();
+                var go = addHours(addMinutes(addMinutes(come, breaktime), 48), 7);
+                $("#outputtext").text(go.toLocaleTimeString());
+            }
+
+            var hrshtml = "";
+            for (var i = 5; i <= 20; i++) {
+                hrshtml += '<option value="' + i + '"' + (i == 6 ? 'selected="selected"' : "") + '>' + i + '</option>';
+            }
+            $("#hrs").html(hrshtml).change(berechne);
+
+            var minshtml = "";
+            for (var i = 0; i < 60; i++) {
+                minshtml += '<option value="' + i + '">' + i + '</option>';
+            }
+            $("#mins").html(minshtml).change(berechne);
+            
+            var bminshtml = "";
+            for (var i = 0; i <= 120; i++) {
+                bminshtml += '<option value="' + i + '"' + (i == 30 ? 'selected="selected"' : "") + '>' + i + '</option>';
+            }
+            $("#breakmins").html(bminshtml).change(berechne);
+            berechne();
+        });
+    </script>
+</html>
