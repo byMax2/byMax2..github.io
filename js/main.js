@@ -53,5 +53,5 @@ function buildSide() {
 
 
 function cp(seite) {
-		window.open(seite + "/index.html");
+		window.open(seite + "/");
 }
