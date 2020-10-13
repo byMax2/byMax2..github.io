@@ -3,32 +3,30 @@
     <head>
         <title>Arbeitszeitzähler</title>
     </head>
-    <header>
-        <h1>Arbeitszeitzähler</h1>
-    </header>
     <body>
-        <div id="input">
-            <h3>Eingabe:</h3>
-            <table>
-                <tr>
-                  <th>Stunden </th>
-                  <th> Minuten</th>
-                </tr>
-                <tr>
-                  <td><select id="hrs"></select></td>
-                  <td><select id="mins"></select></td>
-                </tr>
-            </table>
-            <br>
-            <span>Mittagspause:</span>
-            <select id="breakmins" value="30">
-            </select>
-            <span> Minuten</span>
-        </div>
-        <div id="output">
-            <h3 >Ausgabe:</h3>
-            <h2 id="outputtext"></h2>
-            <h2 id="countdown"></h2>
+        <div id="rechner">
+            <div id="input">
+                <h1>Arbeitszeitzähler</h1>
+                <h3>Eingabe:</h3>
+                <table>
+                    <tr>
+                    <th>Stunden </th>
+                    <th> Minuten</th>
+                    </tr>
+                    <tr>
+                    <td><select id="hrs"></select></td>
+                    <td><select id="mins"></select></td>
+                    </tr>
+                </table>
+                <br>
+                <span>Mittagspause:</span>
+                <select id="breakmins" value="30">
+                </select>
+                <span> Minuten</span>
+                <h3 >Ausgabe:</h3>
+                <h2 id="outputtext"></h2>
+                <h4 id="countdown"></h2>
+            </div>
         </div>
     </body>
     <footer>
@@ -85,8 +83,8 @@
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                $("#countdown").text(hours + ":"
-                + minutes + ":" + seconds);
+                $("#countdown").text((hours < 10 ? "0" : "") + hours + ":"
+                + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
                 if (distance < 1000) {
                     clearInterval(x);
                     $("#countdown").text("Zeit Abgelaufen");
@@ -96,10 +94,19 @@
         });
     </script>
     <style>
-        body {
+        #rechner {
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+        }
+
+        h4 {
+            font-size: 500%;
+        }
+
+        table {
+            text-align: center;
         }
     </style>
 </html>
