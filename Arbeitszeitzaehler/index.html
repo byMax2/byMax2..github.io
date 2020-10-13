@@ -86,7 +86,6 @@
                 $("#countdown").text((hours < 10 ? "0" : "") + hours + ":"
                 + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
                 if (distance < 1000) {
-                    clearInterval(x);
                     $("#countdown").text("Zeit Abgelaufen");
                 }
             }
