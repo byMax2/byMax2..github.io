@@ -46,6 +46,11 @@
             }
 
             var go;
+            var only2hrs;
+            var only1hr;
+            var only30mins;
+            var only1min;
+            var nothingleft;
             function berechne() {
                 var come = new Date();
                 come.setHours($("#hrs").val());
@@ -53,8 +58,13 @@
                 come.setSeconds(0);
                 come.setMilliseconds(0);
                 var breaktime = $("#breakmins").val();
-                go = addHours(addMinutes(addMinutes(come, breaktime), 48), 1);
+                go = addHours(addMinutes(addMinutes(come, breaktime), 48), 7);
                 $("#outputtext").text(go.getHours() + ":" + go.getMinutes() + " Uhr");
+                only2hrs = false;
+                only1hr = false;
+                only30mins = false;
+                only1min = false;
+                nothingleft = false;
             }
 
             var str = '';
@@ -76,12 +86,6 @@
             berechne();
             updateCountdown();
 
-            var start = true;
-            var only2hrs = false;
-            var only1hr = false;
-            var only30mins = false;
-            var only1min = false;
-            var nothingleft = false;
             function updateCountdown() {
                 var now = new Date().getTime();
 
@@ -91,23 +95,23 @@
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                if (hours == 2 && minutes == 0 && /*seconds == 0 &&*/ !only2hrs) {
+                if (hours == 2 && minutes == 0 && seconds == 0 && !only2hrs) {
                         only2hrs = true;
                         Push.create("Arbeitszeitzähler", {body: "Nur noch 2 Stunden arbeiten", timeout: 5000});
                 }
-                if (hours == 1 && minutes == 0 && /*seconds == 0 &&*/ !only1hr) {
+                if (hours == 1 && minutes == 0 && seconds == 0 && !only1hr) {
                         only1hr = true;
                         Push.create("Arbeitszeitzähler", {body: "Nur noch 1 Stunde arbeiten", timeout: 5000});
                 }
-                if (hours == 0 && minutes == 30 && /*seconds == 0 &&*/ !only30mins) {
+                if (hours == 0 && minutes == 30 && seconds == 0 && !only30mins) {
                         only30mins = true;
                         Push.create("Arbeitszeitzähler", {body: "Nur noch 30 Minuten arbeiten", timeout: 5000});
                 }
-                if (hours == 0 && minutes == 1 && /*seconds == 0 &&*/ !only30mins) {
+                if (hours == 0 && minutes == 1 && seconds == 0 && !only30mins) {
                         only30mins = true;
                         Push.create("Arbeitszeitzähler", {body: "Nur noch 1 Minute arbeiten", timeout: 5000});
                 }
-                if (hours == 0 && minutes == 0 && /*seconds == 0 &&*/ !nothingleft) {
+                if (hours == 0 && minutes == 0 && seconds == 0 && !nothingleft) {
                         nothingleft = true;
                         Push.create("Arbeitszeitzähler", {body: "Die Arbeitszeit ist nun vorbei, ab jetzt werden Überstunden aufgebaut", timeout: 5000});
                 }
