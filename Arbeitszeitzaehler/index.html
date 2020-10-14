@@ -2,12 +2,15 @@
 <html>
     <head>
         <title>Arbeitszeitzähler</title>
+        <script src="./push.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     </head>
     <body>
         <div id="rechner">
             <div id="input">
                 <h1>Arbeitszeitzähler</h1>
                 <h3>Eingabe:</h3>
+                <div id="inputtable">
                 <table>
                     <tr>
                     <th>Stunden </th>
@@ -18,6 +21,7 @@
                     <td><select id="mins"></select></td>
                     </tr>
                 </table>
+                </div>
                 <br>
                 <span>Mittagspause:</span>
                 <select id="breakmins" value="30">
@@ -31,10 +35,8 @@
     </body>
     <footer>
     </footer>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script>
         $(document).ready(function () {
-
             function addMinutes(date, minutes) {
                 return new Date(date.getTime() + minutes*60000);
             }
@@ -51,11 +53,11 @@
                 come.setSeconds(0);
                 come.setMilliseconds(0);
                 var breaktime = $("#breakmins").val();
-                go = addHours(addMinutes(addMinutes(come, breaktime), 48), 7);
+                go = addHours(addMinutes(addMinutes(come, breaktime), 48), 1);
                 $("#outputtext").text(go.getHours() + ":" + go.getMinutes() + " Uhr");
             }
 
-            var str = "";
+            var str = '';
             for (var i = 5; i <= 20; i++) 
                 str += '<option value="' + i + '"' + (i == 6 ? 'selected="selected"' : "") + '>' + i + '</option>';
             $("#hrs").html(str).change(berechne);
@@ -74,6 +76,12 @@
             berechne();
             updateCountdown();
 
+            var start = true;
+            var only2hrs = false;
+            var only1hr = false;
+            var only30mins = false;
+            var only1min = false;
+            var nothingleft = false;
             function updateCountdown() {
                 var now = new Date().getTime();
 
@@ -82,6 +90,24 @@
                 var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (start) {
+                    if (hours == 2 && minutes == 0 && seconds == 0)
+                        only2hrs = true;
+                    if (hours == 1 && minutes == 0 && seconds == 0)
+                        only1hrs = true;
+                    if (hours == 0 && minutes == 30 && seconds == 0)
+                        only30mins = true;
+                    if (hours == 0 && minutes == 1 && seconds == 0)
+                        only1min = true;
+                    if (hours == 0 && minutes == 0 && seconds == 0)
+                        nothingleft = true;
+                }
+
+                if (hours == 2 && minutes == 0 && seconds == 0) {
+                        only2hrs = true;
+                        Push.create("Arbeitszeitzähler", {body: "Nur noch 2 Stunden arbeiten", timeout: 5000});
+                }
 
                 $("#countdown").text((hours < 10 ? "0" : "") + hours + ":"
                 + (minutes < 10 ? "0" : "") + minutes + ":" + (seconds < 10 ? "0" : "") + seconds);
@@ -101,10 +127,13 @@
         }
 
         h4 {
-            font-size: 500%;
+            font-size: 600%;
         }
 
-        table {
+        #inputtable {
+            display: flex;
+            justify-content: center;
+            align-items: center;
             text-align: center;
         }
     </style>
