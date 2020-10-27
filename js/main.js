@@ -27,8 +27,7 @@ function buildSide() {
 	let html = "";
 	gameslist.push(new Program("Role-Play-Game", "Das Spiel kombiniert Aspekte eines<br> Aufbaustrategiespiels. Das Spiel fordert<br> den Spieler herraus, ein kleines Dorf in<br> Logischer Reihenfolge auf zu bauen", "spielen", "Maximilian Lude", "RPG"));
 	gameslist.push(new Program("Mensch Ärgere dich Nicht", "Das Ziel des Klassikers besteht darin, die vier<br> eigenen Spielfiguren von den Startfeldern auf<br> die Zielfelder zu ziehen. Dazu müssen die<br> Figuren das Spielbrett einmal umrunden. <br>Über die Anzahl der zu ziehenden Felder<br> pro Runde entscheidet ein Würfel.", "spielen", "Maximilian Lude", "MADN"));
-	gameslist.push(new Program("Lemongame as React", "...", "spielen", "Maximilian Lude", "LemongameReact"));
-	//gameslist.push(new Program("NoNameGame", "...", "spielen", "Maximilian Lude", "NNG"));
+	gameslist.push(new Program("Lemongame as React", "Ein Clicker in dem man mit Zitronen<br>sehr viel Spaß hat", "spielen", "Maximilian Lude", "LemongameReact"));
 
 	if(allprogramms) {
 		gameslist.push(new Program("Lemongame", "...", "spielen", "Nicolai Krechel", "Lemongame"));	
