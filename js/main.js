@@ -30,15 +30,16 @@ function buildSide() {
 	gameslist.push(new Program("Lemongame as React", "Ein Clicker in dem man mit Zitronen<br>sehr viel Spaß hat", "spielen", "Maximilian Lude", "LemongameReact"));
 
 	if(allprogramms) {
-		gameslist.push(new Program("Lemongame", "...", "spielen", "Nicolai Krechel", "Lemongame"));	
-		gameslist.push(new Program("Dimensions", "...", "spielen", "Nicolai Krechel", "Dimensions"));	
-		gameslist.push(new Program("FlappyBird", "...", "spielen", "Nicolai Krechel", "FlappyBird"));
-		gameslist.push(new Program("Snake", "...", "spielen", "Nicolai Krechel", "Snake"));
-		gameslist.push(new Program("Galgenmaennchen", "...", "spielen", "Tristan Schmidt", "Galgenmaennchen"));
-		gameslist.push(new Program("Quiz", "...", "spielen", "Elena Diehl & Jessica Handke", "Quiz"));
-		gameslist.push(new Program("Schere Stein Papier", "...", "spielen", "Elena Diehl & Jessica Handke", "SchereSteinPapier"));
-		gameslist.push(new Program("Schiffeversänken", "...", "spielen", "Pierre Steinwart", "Schiffeversaenken"));
-		gameslist.push(new Program("Tic Tac Toe", "...", "spielen", "Christoph Nothen", "TicTacToe"));							
+		gameslist.push(new Program("Lemongame", "Ein Clicker über Zitronen", "spielen", "Nicolai Krechel", "Lemongame"));	
+		gameslist.push(new Program("Dimensions", "Ein Clicker bei dem es nur um Dimensionen geht", "spielen", "Nicolai Krechel", "Dimensions"));	
+		gameslist.push(new Program("FlappyBird", "Ein Pixel durch einen Pakour bringen", "spielen", "Nicolai Krechel", "FlappyBird"));
+		gameslist.push(new Program("Snake", "Sammele Pixel auf um Größer zu werden", "spielen", "Nicolai Krechel", "Snake"));
+		gameslist.push(new Program("Matter Merge", "Verschmelze Packete<br>für mehr Materie", "spielen", "Nicolai Krechel", "Merge"));
+		gameslist.push(new Program("Galgenmaennchen", "Errate ein Wort inerhalb<br>12 Versuche", "spielen", "Tristan Schmidt", "Galgenmaennchen"));
+		gameslist.push(new Program("Quiz", "Fragen Beantworten mit A,B,C oder D", "spielen", "Elena Diehl & Jessica Handke", "Quiz"));
+		gameslist.push(new Program("Schere Stein Papier", "Suche ein Zeichen aus<br>und guck wer gewinnt", "spielen", "Elena Diehl & Jessica Handke", "SchereSteinPapier"));
+		gameslist.push(new Program("Schiffeversänken", "Logisches Spiel von Erraten<br>von Schiffspositionen", "spielen", "Pierre Steinwart", "Schiffeversaenken"));
+		gameslist.push(new Program("Tic Tac Toe", "Wer zu erst auf einem 3x3 Feld<br>3 neben einander oder diagonal hat, gewinnt", "spielen", "Christoph Nothen", "TicTacToe"));							
 	}
 
 	testlist.push(new Program("Hörtest", "Es wird eine bestimmte Frequenz abgespielt,<br> die nach belieben verändert werden kann.<br> Jenachdem wie lange man den Ton noch hört,<br> kann man beurteilen, wie gut das eigene Gehör ist.", "starten", "Maximilian Lude", "Hearing"))
