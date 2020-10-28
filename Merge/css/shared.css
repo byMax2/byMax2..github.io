@@ -1,0 +1,43 @@
+* { font-size: 1.1vw;
+	box-sizing: border-box;
+	line-height: 1.2vw;
+	text-align: center;
+
+	z-index: 0;}
+
+.col, .row, .container-fluid {padding: 0; padding-left: 0;padding-right: 0;margin: 0; margin-left: 0;margin-right: 0;}
+.col {padding-left: 0.2vw;padding-right: 0.2vw;}
+.clearfix {overflow: auto;}
+.clearfix::after {content: "";clear: both;display: table;}
+
+html, body {
+	background-color: rgb(63, 63, 63);
+}
+h1 {font-size: 1.8vw; margin-bottom: 0.2vw; color: white;}
+canvas {cursor: none; border: 1px solid white;}
+
+#canvasCol {width: 800px;}
+#shopCol {width: 400px;}
+#moneyOut {
+	font-size: 1.4vw; margin-bottom: 8px;
+	color: white;}
+
+.upgrade {
+	border: 3px solid white;
+	background: black;
+	color: white;
+	padding: 4px;
+	margin-bottom: 16px;}
+	.upgrade-name {
+		border-bottom: 1px solid white;
+		padding: 1px;}
+	.upgrade-desc {
+		border-bottom: 1px solid white;
+		padding: 4px;}
+	.upgrade-cost {
+		padding: 2px;}
+	.upgrade-button {
+		cursor: pointer;
+		background-color: rgb(0, 127, 0);
+		border: 1px solid white;
+		padding: 2px;}

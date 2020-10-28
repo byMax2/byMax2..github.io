@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> Matter Merge </title>
+	<link rel="stylesheet" type="text/css" href="./lib/bootstrap-4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="./lib/bootstrap-4.3.1/css/bootstrap-reboot.min.css">
+	<link rel="stylesheet" type="text/css" href="./css/shared.css">
+	<link href="https://fonts.googleapis.com/css?family=Staatliches&display=swap" rel="stylesheet">
+	<meta charset="utf-8">
+</head>
+
+<body>
+
+<div class="container-fluid">
+	<div class="row" id="topRow">
+		<div class="col">
+			<h1>Matter Merge</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-7" id="canvasCol">
+
+		</div>
+		<div class="col-5" id="shopCol">
+			<div id="moneyOut"></div>
+			<div class="upgrade" id="upgrade_01">
+				<div class="upgrade-name"></div>
+				<div class="upgrade-desc"></div>
+				<div class="upgrade-cost"></div>
+				<div class="upgrade-button" onclick="purchaseUpgrade(0);">Purchase</div>
+			</div>
+			<div class="upgrade" id="upgrade_02">
+				<div class="upgrade-name"></div>
+				<div class="upgrade-desc"></div>
+				<div class="upgrade-cost"></div>
+				<div class="upgrade-button" onclick="purchaseUpgrade(1);">Purchase</div>
+			</div>
+			<div class="upgrade" id="upgrade_03">
+				<div class="upgrade-name"></div>
+				<div class="upgrade-desc"></div>
+				<div class="upgrade-cost"></div>
+				<div class="upgrade-button" onclick="purchaseUpgrade(2);">Purchase</div>
+			</div>
+			<div class="upgrade" id="upgrade_04">
+				<div class="upgrade-name"></div>
+				<div class="upgrade-desc"></div>
+				<div class="upgrade-cost"></div>
+				<div class="upgrade-button" onclick="purchaseUpgrade(3);">Purchase</div>
+			</div>
+			<div class="upgrade" id="upgrade_05">
+				<div class="upgrade-name"></div>
+				<div class="upgrade-desc"></div>
+				<div class="upgrade-cost"></div>
+				<div class="upgrade-button" onclick="purchaseUpgrade(4);">Purchase</div>
+			</div>
+			<div class="upgrade" id="upgrade_06">
+				<div class="upgrade-name"></div>
+				<div class="upgrade-desc"></div>
+				<div class="upgrade-cost"></div>
+				<div class="upgrade-button" onclick="purchaseUpgrade(5);">Purchase</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</body>
+
+	<!-- libraries -->
+	<script defer src="./lib/jquery.js"></script>
+	<script defer src="./lib/p5.js"></script>
+	<script defer src="./lib/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script defer src="./lib/popper.js"></script>
+	<script defer src="./lib/lodash.js"></script>
+	<!--------------->
+
+	<!-- main -->
+	<script defer src="./src/main.js"></script>
+	<!---------->
+
+</html>
