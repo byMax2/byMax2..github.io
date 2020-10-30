@@ -2,7 +2,8 @@
 	box-sizing: border-box;
 	line-height: 1.2vw;
 	text-align: center;
-
+	-moz-user-select: none;
+	user-select: none;
 	z-index: 0;}
 
 .col, .row, .container-fluid {padding: 0; padding-left: 0;padding-right: 0;margin: 0; margin-left: 0;margin-right: 0;}
