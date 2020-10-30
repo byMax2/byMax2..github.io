@@ -80,8 +80,8 @@ function mouseReleased() {
 }
 
 function purchaseUpgrade(n) {
-	if (n == 4) game.autoMergeUnlocked = true;
-	if (n == 5) game.autoOpenUnlocked = true;
+	if (n == 4) game.autoOpenUnlocked = true;
+	if (n == 5) game.autoMergeUnlocked = true;
 
 	game.upgrades[n].purchase();
 	
@@ -89,8 +89,8 @@ function purchaseUpgrade(n) {
 	game.tierNew = 1 + game.upgrades[1].amount;
 	game.chanceForLuckyFissure = game.upgrades[2].amount * 2.5;
 	game.chanceForLuckyMerge = game.upgrades[3].amount * 1;
-	game.autoMergeTimerMax = 120 * (game.upgrades[4].amount == 0 ? 1 : Math.pow(0.95, game.upgrades[4].amount));
-	game.autoOpenTimerMax = 120 * (game.upgrades[5].amount == 0 ? 1 : Math.pow(0.95, game.upgrades[5].amount));
+	game.autoOpenTimerMax = 60 * (game.upgrades[4].amount == 0 ? 1 : Math.pow(0.95, game.upgrades[4].amount));
+	game.autoMergeTimerMax = 60 * (game.upgrades[5].amount == 0 ? 1 : Math.pow(0.95, game.upgrades[5].amount));
 }
 
 class MergeGame {
@@ -101,9 +101,9 @@ class MergeGame {
 		this.fissureTimer = 0;
 		this.fissureTimerMax = 10;
 		this.autoMergeTimer = 0;
-		this.autoMergeTimerMax = 120;
+		this.autoMergeTimerMax = 60;
 		this.autoOpenTimer = 0;
-		this.autoOpenTimerMax = 120;
+		this.autoOpenTimerMax = 60;
 
 		this.tierNew = 1;
 
@@ -129,8 +129,8 @@ class MergeGame {
 		this.upgrades[1] = new Upgrade("#upgrade_02", "Denser Fissures", "+1 Tier to new Matter (+1 per Upgrade)", 1000, 20);
 		this.upgrades[2] = new Upgrade("#upgrade_03", "Lucky Fissures", "Chance for +1 Tier to new Matter (+2.5% Chance per Upgrade)", 5000, 10);
 		this.upgrades[3] = new Upgrade("#upgrade_04", "Lucky Merges", "Chance for +1 Tier when merging (+1.0% Chance per Upgrade)", 10000, 10);
-		this.upgrades[4] = new Upgrade("#upgrade_05", "AutoOpen", "Automatically Opens Crates every 120s (-5% per Upgrade)", 10000, 10);
-		this.upgrades[5] = new Upgrade("#upgrade_06", "AutoMerge", "Automatically Merges Matter every 120s (-5% per Upgrade)", 10000, 10);
+		this.upgrades[4] = new Upgrade("#upgrade_05", "AutoOpen", "Automatically Opens Crates every 60s (-5% per Upgrade)", 10000, 10);
+		this.upgrades[5] = new Upgrade("#upgrade_06", "AutoMerge", "Automatically Merges Matter every 60s (-5% per Upgrade)", 10000, 10);
 	}
 
 	canMerge() {
