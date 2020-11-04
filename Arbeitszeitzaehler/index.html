@@ -45,6 +45,9 @@
                 return addMinutes(date, hours*60);
             }
 
+            if (Push.Permission.get() == Push.Permission.DEFAULT) 
+                Push.Permission.request();
+
             var go;
             var only2hrs;
             var only1hr;
