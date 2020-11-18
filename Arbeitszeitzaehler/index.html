@@ -54,6 +54,23 @@
             var only30mins;
             var only1min;
             var nothingleft;
+            var str = '';
+            for (var i = 5; i <= 20; i++) 
+                str += '<option value="' + i + '"' + (i == 6 ? 'selected="selected"' : "") + '>' + i + '</option>';
+            $("#hrs").html(str).change(berechne);
+            str = "";
+            for (var i = 0; i < 60; i++) 
+                str += '<option value="' + i + '">' + i + '</option>';
+            $("#mins").html(str).change(berechne);
+            str = "";
+            for (var i = 0; i <= 120; i++) 
+                str += '<option value="' + i + '"' + (i == 30 ? 'selected="selected"' : "") + '>' + i + '</option>';
+            $("#breakmins").html(str).change(berechne);
+            str = "";
+            
+            berechne();
+            updateCountdown();
+
             function berechne() {
                 var come = new Date();
                 come.setHours($("#hrs").val());
@@ -62,33 +79,14 @@
                 come.setMilliseconds(0);
                 var breaktime = $("#breakmins").val();
                 go = addHours(addMinutes(addMinutes(come, breaktime), 48), 7);
-                $("#outputtext").text(go.getHours() + ":" + go.getMinutes() + " Uhr");
+                $("#outputtext").text((go.getHours() < 10 ? "0" : "") + go.getHours() + ":" + (go.getMinutes() < 10 ? "0" : "") + go.getMinutes() + " Uhr");
                 only2hrs = false;
                 only1hr = false;
                 only30mins = false;
                 only1min = false;
                 nothingleft = false;
             }
-
-            var str = '';
-            for (var i = 5; i <= 20; i++) 
-                str += '<option value="' + i + '"' + (i == 6 ? 'selected="selected"' : "") + '>' + i + '</option>';
-            $("#hrs").html(str).change(berechne);
-            str = "";
-
-            for (var i = 0; i < 60; i++) 
-                str += '<option value="' + i + '">' + i + '</option>';
-            $("#mins").html(str).change(berechne);
-            str = "";
             
-            for (var i = 0; i <= 120; i++) 
-                str += '<option value="' + i + '"' + (i == 30 ? 'selected="selected"' : "") + '>' + i + '</option>';
-            
-            $("#breakmins").html(str).change(berechne);
-            str = "";
-            berechne();
-            updateCountdown();
-
             function updateCountdown() {
                 var now = new Date().getTime();
 
