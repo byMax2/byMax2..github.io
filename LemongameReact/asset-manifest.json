@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/LemongameReact/static/css/main.1b19bb73.chunk.css",
+    "main.js": "/LemongameReact/static/js/main.b63fd4b8.chunk.js",
+    "main.js.map": "/LemongameReact/static/js/main.b63fd4b8.chunk.js.map",
+    "runtime-main.js": "/LemongameReact/static/js/runtime-main.55898d56.js",
+    "runtime-main.js.map": "/LemongameReact/static/js/runtime-main.55898d56.js.map",
+    "static/js/2.b39eac08.chunk.js": "/LemongameReact/static/js/2.b39eac08.chunk.js",
+    "static/js/2.b39eac08.chunk.js.map": "/LemongameReact/static/js/2.b39eac08.chunk.js.map",
+    "index.html": "/LemongameReact/index.html",
+    "precache-manifest.9ce976b57c593767d0ccf9c96009ec82.js": "/LemongameReact/precache-manifest.9ce976b57c593767d0ccf9c96009ec82.js",
+    "service-worker.js": "/LemongameReact/service-worker.js",
+    "static/css/main.1b19bb73.chunk.css.map": "/LemongameReact/static/css/main.1b19bb73.chunk.css.map",
+    "static/js/2.b39eac08.chunk.js.LICENSE.txt": "/LemongameReact/static/js/2.b39eac08.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.55898d56.js",
+    "static/js/2.b39eac08.chunk.js",
+    "static/css/main.1b19bb73.chunk.css",
+    "static/js/main.b63fd4b8.chunk.js"
+  ]
+}
