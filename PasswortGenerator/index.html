@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Passwort Generator</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    </head>
+    <body>
+        <div id="outputtext">
+        <h1 id="txt">888888-888888-888888</h1>
+    </div>
+    </body>
+    <footer>
+    </footer>
+    <script>
+
+        $(document).ready(function () {
+            let alphabet = "";
+            for(let i = 97; i < 123; i++) {
+                alphabet += String.fromCharCode(i);
+            }
+            let password = "";
+            for (let i = 0; i < 3; i = i+1) {
+                let section = "";
+                for (let i = 0; i < 6; i = i+1) {
+                    let letter = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                    if (Math.floor(Math.random() * 8) == 0) {
+                        letter = letter.toUpperCase();
+                    }
+                    if (Math.floor(Math.random() * 12) == 0) {
+                        letter = (Math.floor(Math.random() * 9)+1);
+                    }
+                    section += letter;
+                }
+                password += section;
+                if (i < 2) {
+                    password += "-";
+                }
+            }
+            $("#txt").html(password);
+        });
+    </script>
+    <style>
+        #outputtext {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        #txt {
+            font-family: monospace;
+            color: gray;
+            font-size: xx-large;
+            border: 4px dashed gray;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 30%;
+            padding: 2%;
+            margin-top: 5%;
+            
+        }
+    </style>
+</html>
